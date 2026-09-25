@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 """SLATE 文档站生成器 · 零依赖（只用 Python 标准库）
 
-把 content/*.md 渲染成 site/ 下的静态站点：左侧分组导航、面包屑、右侧本页目录、
+把 content/*.md 渲染成 docs/ 下的静态站点：左侧分组导航、面包屑、右侧本页目录、
 客户端搜索、明暗主题、代码复制、翻页。产物可直接部署到 GitHub Pages。
 
 用法：
-    python build.py             # 生成到 site/
+    python build.py             # 生成到 docs/
     python build.py --check     # 只校验 frontmatter 与站内链接，不写文件
-    python build.py --clean     # 生成前清空 site/
+    python build.py --clean     # 生成前清空输出目录
+    python build.py --out site  # 换输出目录
 """
 
 from __future__ import annotations
@@ -24,7 +25,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 CONTENT_DIR = ROOT / "content"
 THEME_DIR = ROOT / "theme"
-DEFAULT_OUT = ROOT / "site"
+DEFAULT_OUT = ROOT / "docs"
 
 try:  # Windows 控制台默认 GBK，中文与 ✓ 会直接抛 UnicodeEncodeError
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -586,7 +587,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="生成 SLATE 文档站")
     parser.add_argument("--check", action="store_true", help="只校验，不写文件")
     parser.add_argument("--clean", action="store_true", help="生成前清空输出目录")
-    parser.add_argument("--out", default="site", help="输出目录，默认 site/（发布到 GitHub Pages 时可用 docs/）")
+    parser.add_argument("--out", default="docs", help="输出目录，默认 docs/（GitHub Pages 认 main 分支的 /docs）")
     args = parser.parse_args()
 
     if not CONTENT_DIR.is_dir():

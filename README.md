@@ -1,7 +1,7 @@
 # SLATE 文档
 
 [SLATE（砚）](https://github.com/CaryWang1234/SLATE) 面向使用者的文档源文件与静态站点。
-`content/` 里的 Markdown 是唯一事实源，`site/` 由生成器产出，**不要手改 `site/`**。
+`content/` 里的 Markdown 是唯一事实源，`docs/` 由生成器产出，**不要手改 `docs/`**。
 
 ## 目录结构
 
@@ -15,19 +15,19 @@ SLATE_docs/
 │   ├── docs.js         # 交互（主题 / 抽屉 / 搜索 / 目录跟随 / 代码复制）
 │   └── icon.png        # 站点图标
 ├── build.py            # 零依赖生成器（只用 Python 标准库）
-├── site/               # 生成产物（可直接部署）
+├── docs/               # 生成产物 = GitHub Pages 发布目录（已带 .nojekyll）
 └── README.md
 ```
 
 ## 本地构建与预览
 
 ```bash
-python build.py              # 生成到 site/
+python build.py              # 生成到 docs/
 python build.py --check      # 只校验 frontmatter 与站内链接，不写文件
 python build.py --clean      # 生成前清空输出目录
-python build.py --out docs   # 换输出目录（GitHub Pages 认 main 分支的 /docs）
+python build.py --out site   # 换输出目录
 
-cd site && python -m http.server 8129   # 本地预览 http://127.0.0.1:8129
+cd docs && python -m http.server 8129   # 本地预览 http://127.0.0.1:8129
 ```
 
 生成器会把 `content/*.md` 之间的相对链接自动改写成 `.html`，因此 Markdown 源在
@@ -57,7 +57,7 @@ order: 12
 | 三反引号 + 语言 | 代码块，右上角带复制按钮 |
 | `[文字](./06-autopilot.md)` | 跨页链接，构建时自动改写为 `.html` |
 
-5. 运行 `python build.py` 后再看 `site/`；`--check` 会报出缺失 frontmatter 与死链。
+5. 运行 `python build.py` 后再看 `docs/`；`--check` 会报出缺失 frontmatter 与死链。
 
 ## 写作口径
 
@@ -67,10 +67,9 @@ order: 12
 
 ## 部署
 
-产物是纯静态文件，已带 `.nojekyll`，不需要任何构建步骤。
+`docs/` 是纯静态产物，随仓库一起提交，已带 `.nojekyll`（GitHub Pages 就不会再走 Jekyll）。
 
-- **GitHub Pages（推荐）**：`python build.py --out docs --clean`，提交后在仓库
-  Settings → Pages 里把 Source 设为 `Deploy from a branch`，分支选 `main`，目录选 `/docs`。
-- **任意静态托管**：把 `site/` 整个目录传上去即可。
+仓库 Settings → Pages：Source 选 `Deploy from a branch`，分支 `main`，目录 `/docs`。
 
-改过 `content/` 或 `theme/` 之后重新跑一次生成命令再提交，让产物与源文件保持同步。
+改过 `content/` 或 `theme/` 之后重新跑一次 `python build.py` 再提交，让产物与源文件保持同步。
+换用其他静态托管时，把 `docs/` 整个目录传上去即可。
