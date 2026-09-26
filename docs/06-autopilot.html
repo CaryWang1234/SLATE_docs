@@ -88,6 +88,9 @@
 <h2 id="停止是真取消"><a class="anchor" href="#停止是真取消" aria-hidden="true">#</a>停止是真取消</h2>
 <p>点「停止」不只是让界面安静下来：</p>
 <ul><li>同时关闭模型流与工具调用的流式通道。</li><li>后端随之终止对应的子进程与在跑任务。</li><li>被取消的调用以独立状态记账，与「已完成」分开统计，事后可以回溯这一笔是停的还是做完的。</li></ul>
+<h2 id="本轮改了哪些文件说完就摆出来"><a class="anchor" href="#本轮改了哪些文件说完就摆出来" aria-hidden="true">#</a>本轮改了哪些文件，说完就摆出来</h2>
+<p>这一轮真的往磁盘写过文件（编辑 / 新建 / 追加）时，模型说完最后一句话后，消息末尾会挂出一张卡片。它只报事实，不替模型表功。</p>
+<ul><li>抬头是这一轮改了几个文件、各自行数增减；点「审阅」逐文件展开 diff（默认列三条，其余点一下再显示）。</li><li>点「撤销」把这一轮写过的文件还原成本轮开始<strong>之前</strong>的样子，本轮新建的文件一并删掉；执行前先过一道红色确认。</li><li>你在本轮之后又自己改过的文件会被跳过并写明原因——撤回只还原它自己写过的那份，不吃掉你自己的修改。</li><li>本轮没往磁盘写任何东西时不留卡片；关掉了自动应用也一样：那次写入仍然记在它提出那一轮的清单里，但要等你点「接受」之后才真的落盘。</li><li>原文快照存在 <code>data/round_snapshots/</code>，只保留 7 天；超过 2MB 的大文件不存原文，撤回时会跳过并说明。全部留在本机，不上传。</li><li>移动端只展示这份清单，撤销留在桌面端做。</li></ul>
 <h2 id="目标模式"><a class="anchor" href="#目标模式" aria-hidden="true">#</a>目标模式</h2>
 <p>目标模式是显式的强闭环模式：你给目标，模型按六阶段自主推进。</p>
 <h3 id="六阶段闭环"><a class="anchor" href="#六阶段闭环" aria-hidden="true">#</a>六阶段闭环</h3>
@@ -123,7 +126,7 @@
     </div>
   </main>
 
-  <aside class="toc" data-toc aria-label="本页目录"><div class="toc-title">本页目录</div><ul class="toc-list"><li class="lv2"><a href="#agent-autopilot-是什么">Agent Autopilot 是什么</a></li><li class="lv2"><a href="#三种运行强度对比">三种运行强度对比</a></li><li class="lv2"><a href="#循环里会发生什么">循环里会发生什么</a></li><li class="lv2"><a href="#干完了就停">干完了就停</a></li><li class="lv2"><a href="#自动催办">自动催办</a></li><li class="lv2"><a href="#continue-autopilot">Continue Autopilot</a></li><li class="lv2"><a href="#砚流落笔即所见">砚流：落笔即所见</a></li><li class="lv2"><a href="#停止是真取消">停止是真取消</a></li><li class="lv2"><a href="#目标模式">目标模式</a></li><li class="lv3"><a href="#六阶段闭环">六阶段闭环</a></li><li class="lv3"><a href="#任务清单">任务清单</a></li><li class="lv3"><a href="#四种退出方式">四种退出方式</a></li><li class="lv2"><a href="#输出截断四层防线">输出截断四层防线</a></li><li class="lv2"><a href="#一整轮只有思考没有正文">一整轮只有思考、没有正文</a></li><li class="lv2"><a href="#跨项目并行">跨项目并行</a></li></ul></aside>
+  <aside class="toc" data-toc aria-label="本页目录"><div class="toc-title">本页目录</div><ul class="toc-list"><li class="lv2"><a href="#agent-autopilot-是什么">Agent Autopilot 是什么</a></li><li class="lv2"><a href="#三种运行强度对比">三种运行强度对比</a></li><li class="lv2"><a href="#循环里会发生什么">循环里会发生什么</a></li><li class="lv2"><a href="#干完了就停">干完了就停</a></li><li class="lv2"><a href="#自动催办">自动催办</a></li><li class="lv2"><a href="#continue-autopilot">Continue Autopilot</a></li><li class="lv2"><a href="#砚流落笔即所见">砚流：落笔即所见</a></li><li class="lv2"><a href="#停止是真取消">停止是真取消</a></li><li class="lv2"><a href="#本轮改了哪些文件说完就摆出来">本轮改了哪些文件，说完就摆出来</a></li><li class="lv2"><a href="#目标模式">目标模式</a></li><li class="lv3"><a href="#六阶段闭环">六阶段闭环</a></li><li class="lv3"><a href="#任务清单">任务清单</a></li><li class="lv3"><a href="#四种退出方式">四种退出方式</a></li><li class="lv2"><a href="#输出截断四层防线">输出截断四层防线</a></li><li class="lv2"><a href="#一整轮只有思考没有正文">一整轮只有思考、没有正文</a></li><li class="lv2"><a href="#跨项目并行">跨项目并行</a></li></ul></aside>
 </div>
 
 <div class="search-overlay" data-search-overlay hidden>
