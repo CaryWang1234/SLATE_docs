@@ -3,6 +3,8 @@
 [SLATE（砚）](https://github.com/CaryWang1234/SLATE) 面向使用者的文档源文件与静态站点。
 `content/` 里的 Markdown 是唯一事实源，`docs/` 由生成器产出，**不要手改 `docs/`**。
 
+线上入口：文档站 **https://docs.slate-ai.site/** ｜ 官网 **https://slate-ai.site/** ｜ 使用教程 **https://slate-ai.site/guide.html**
+
 ## 目录结构
 
 ```

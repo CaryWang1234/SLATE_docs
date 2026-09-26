@@ -37,8 +37,8 @@
     </button>
 
     <nav class="topbar-links">
-      <a href="https://carywang1234.github.io/SLATE/" target="_blank" rel="noopener">官网</a>
-      <a href="https://carywang1234.github.io/SLATE/docs/guide.html" target="_blank" rel="noopener">使用教程</a>
+      <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a>
+      <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a>
       <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
     </nav>
 
@@ -88,7 +88,7 @@
 <h2 id="上下文与用量"><a class="anchor" href="#上下文与用量" aria-hidden="true">#</a>上下文与用量</h2>
 <p>对话区顶部有一条用量信息栏，鼠标悬停可以看到上下文被谁占走了：</p>
 <div class="table-wrap"><table><thead><tr><th>分桶</th><th>装的是什么</th></tr></thead><tbody><tr><td>系统提示词</td><td>角色设定、项目宪法等固定内容</td></tr><tr><td>工具目录</td><td>这一场对话里模型能看到哪些工具</td></tr><tr><td>Skill 注入</td><td>被 <code>@</code> 提及带进来的技能与文件内容</td></tr><tr><td>工具调用与结果</td><td>模型调了什么、工具回了什么</td></tr><tr><td>对话消息</td><td>你和模型真正说过的话</td></tr></tbody></table></div>
-<ul><li>上下文条的分母是你为该模型设定的上下文预算，不是模型标称的窗口大小，所以它更像"距离压缩还有多远"的预告。</li><li>占用超过阈值时，SLATE 会自动把较早的对话压成一段历史摘要，最近几轮保持原样。</li><li>也可以手动压缩：点工具栏的压缩按钮，选轻度或重度两档后开始。</li></ul>
+<ul><li>上下文条的分母是你为该模型设定的上下文预算，不是模型标称的窗口大小，所以它更像"距离压缩还有多远"的预告。</li><li>占用超过阈值时，SLATE 会自动把较早的对话压成一段历史摘要，最近几轮保持原样。</li><li>摘要发给模型时仍是完整原文，只在消息区折成一条折叠条：点标题才展开，长历史不会把最近几轮挤出屏幕。</li><li>也可以手动压缩：点工具栏的压缩按钮，选轻度或重度两档后开始。</li></ul>
 <div class="table-wrap"><table><thead><tr><th>档位</th><th>保留什么</th></tr></thead><tbody><tr><td>轻度压缩</td><td>保留关键细节与可能被引用的文件名、数值等事实，约 50% 压缩</td></tr><tr><td>重度压缩</td><td>只留核心结论、关键决策与明确待办，约 80% 压缩</td></tr></tbody></table></div>
 <div class="callout callout-tip"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M10 13.4V9M10 6.6v.6"/><path d="M7.6 12.4h4.8"/></svg><span>什么时候该手动压缩</span></div><div class="callout-body"><p>自动压缩只在超出阈值时发生。如果这一场的前半段夹着大量"读文件、试错、来回确认"的中间过程，而你接下来要谈的是另一件事，提前手动压一次比等它自动触发更划算：轻度档能保住文件名与数值，重度档只留结论、细节会丢。</p></div></div>
 <h2 id="记忆与画像的自动注入"><a class="anchor" href="#记忆与画像的自动注入" aria-hidden="true">#</a>记忆与画像的自动注入</h2>
@@ -101,6 +101,11 @@
       <nav class="pager" aria-label="翻页"><a class="prev" href="./04-models.html"><span class="dir">上一篇</span><span class="ttl">模型接入与 API Key</span></a><a class="next" href="./06-autopilot.html"><span class="dir">下一篇</span><span class="ttl">Agent Autopilot 与目标模式</span></a></nav>
       <footer class="site-footer">
         <span>SLATE（砚）· 本地 AI 协作调度台</span>
+        <span>
+          <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a> ·
+          <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a> ·
+          <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
+        </span>
         <span>MIT License · 文档随产品演进</span>
       </footer>
     </div>

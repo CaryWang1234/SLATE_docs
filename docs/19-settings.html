@@ -37,8 +37,8 @@
     </button>
 
     <nav class="topbar-links">
-      <a href="https://carywang1234.github.io/SLATE/" target="_blank" rel="noopener">官网</a>
-      <a href="https://carywang1234.github.io/SLATE/docs/guide.html" target="_blank" rel="noopener">使用教程</a>
+      <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a>
+      <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a>
       <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
     </nav>
 
@@ -62,7 +62,7 @@
       <article class="prose"><h1 class="doc-title" id="top">设置与安全审批</h1>
 <p>这一页说明设置页里各分区分别管什么，以及 SLATE 动手之前会怎么征求你的同意。设置页从顶栏「设置」进入，左栏是锚点导航，右侧按区块依次排列。</p>
 <h2 id="设置页分区总览"><a class="anchor" href="#设置页分区总览" aria-hidden="true">#</a>设置页分区总览</h2>
-<div class="table-wrap"><table><thead><tr><th>分区</th><th>管什么</th></tr></thead><tbody><tr><td>模型配置</td><td>添加自定义模型与内置模型密钥、配置 Base URL、可选启用 Responses API 模式</td></tr><tr><td>API 测试</td><td>用一条最短请求验证某个模型的密钥与端点是否可用</td></tr><tr><td>用量统计</td><td>全部对话的累计 Token 用量，随对话自动更新</td></tr><tr><td>上下文与项目</td><td>上下文 Token 上限、单次输出上限、文件写入是否自动确认、项目宪法</td></tr><tr><td>自动推进</td><td>回复疑似停顿时的补调策略，以及 Continue Autopilot</td></tr><tr><td>AI 辅助功能</td><td>对话以外的耗 Token 功能逐项开关与单独选模型</td></tr><tr><td>通知</td><td>大任务结束时的提示音与系统通知</td></tr><tr><td>通用 UI</td><td>极简 Codex 风格布局开关（实验性）</td></tr><tr><td>联网搜索</td><td>默认搜索引擎、网页 JS 渲染策略</td></tr><tr><td>图片生成 / 视频生成</td><td>生成类工具的模型与 API Key</td></tr><tr><td>审批模式</td><td>每个对话默认的审批档位</td></tr><tr><td>工具 / 技能</td><td>内置工具清单、技能管理与 Actions 流程说明书编辑</td></tr><tr><td>数据备份</td><td>备份导出与导入、存储空间管理</td></tr><tr><td>局域网遥控</td><td>遥控地址与二维码</td></tr><tr><td>打字小游戏</td><td>顺手测手速，题库可自定义</td></tr><tr><td>关于</td><td>版本、检查更新、新手引导、官网与 GitHub</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>分区</th><th>管什么</th></tr></thead><tbody><tr><td>模型配置</td><td>添加自定义模型与内置模型密钥、配置 Base URL、每个模型一行「最大上下文」滑杆、可选启用 Responses API 模式</td></tr><tr><td>API 测试</td><td>用一条最短请求验证某个模型的密钥与端点是否可用</td></tr><tr><td>用量统计</td><td>全部对话的累计 Token 用量，随对话自动更新</td></tr><tr><td>上下文与项目</td><td>上下文 Token 上限、单次输出上限、文件写入是否自动确认、项目宪法</td></tr><tr><td>自动推进</td><td>回复疑似停顿时的补调策略，以及 Continue Autopilot</td></tr><tr><td>AI 辅助功能</td><td>对话以外的耗 Token 功能逐项开关与单独选模型</td></tr><tr><td>通知</td><td>大任务结束时的提示音与系统通知</td></tr><tr><td>通用 UI</td><td>极简 Codex 风格布局开关（实验性）</td></tr><tr><td>联网搜索</td><td>默认搜索引擎、网页 JS 渲染策略</td></tr><tr><td>图片生成 / 视频生成</td><td>生成类工具的模型与 API Key</td></tr><tr><td>审批模式</td><td>每个对话默认的审批档位</td></tr><tr><td>工具 / 技能</td><td>内置工具清单、技能管理与 Actions 流程说明书编辑</td></tr><tr><td>数据备份</td><td>备份导出与导入、存储空间管理</td></tr><tr><td>局域网遥控</td><td>遥控地址与二维码</td></tr><tr><td>打字小游戏</td><td>顺手测手速，题库可自定义</td></tr><tr><td>关于</td><td>版本、检查更新、新手引导、官网与 GitHub</td></tr></tbody></table></div>
 <p>设置页往下滚动还会看到「后台任务」「多任务与项目」「MCP Server」三个区块，它们直接跟在上面这些区块之后，不额外占用左栏导航条目。</p>
 <h2 id="ai-辅助功能"><a class="anchor" href="#ai-辅助功能" aria-hidden="true">#</a>AI 辅助功能</h2>
 <p>除对话、团队对话与提示词工厂之外，每一处会自己去找模型要结果的功能都在这里挂号，共 13 项。每一项都能单独关掉，也能单独指定模型；不指定时跟随当前主模型。</p>
@@ -94,6 +94,11 @@
       <nav class="pager" aria-label="翻页"><a class="prev" href="./18-mobile.html"><span class="dir">上一篇</span><span class="ttl">移动端遥控与局域网访问</span></a><a class="next" href="./20-faq.html"><span class="dir">下一篇</span><span class="ttl">常见问题</span></a></nav>
       <footer class="site-footer">
         <span>SLATE（砚）· 本地 AI 协作调度台</span>
+        <span>
+          <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a> ·
+          <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a> ·
+          <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
+        </span>
         <span>MIT License · 文档随产品演进</span>
       </footer>
     </div>

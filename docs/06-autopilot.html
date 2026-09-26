@@ -37,8 +37,8 @@
     </button>
 
     <nav class="topbar-links">
-      <a href="https://carywang1234.github.io/SLATE/" target="_blank" rel="noopener">官网</a>
-      <a href="https://carywang1234.github.io/SLATE/docs/guide.html" target="_blank" rel="noopener">使用教程</a>
+      <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a>
+      <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a>
       <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
     </nav>
 
@@ -103,6 +103,9 @@
 <h2 id="输出截断四层防线"><a class="anchor" href="#输出截断四层防线" aria-hidden="true">#</a>输出截断四层防线</h2>
 <p>写超长文件时模型可能被输出上限截断，SLATE 用四层防线保证文件最终是完整的：</p>
 <ol><li><strong>断点锚点续写</strong>：把模型自己最后输出的内容作为锚点，让它从断点精确接续（最多 6 轮）。</li><li><strong>截断守卫</strong>：工具调用没闭合就拒绝执行，要求模型拆分重试，而不是写进半份文件。</li><li><strong>分段补齐</strong>：先用创建写入前半部分，再用追加动作把剩余部分补齐，卡片上会标出这一段是截断的、等待后续补齐。</li><li><strong>提示词预防</strong>：在提示里事先要求它分批写入大文件。</li></ol>
+<h2 id="一整轮只有思考没有正文"><a class="anchor" href="#一整轮只有思考没有正文" aria-hidden="true">#</a>一整轮只有思考、没有正文</h2>
+<p>还有一种截断跟文件无关：思考过程与正文共用同一个输出上限，思考吃满时这一轮就没地方写正文了。这类结局 SLATE 会如实报出来，不再让它悄悄过去：</p>
+<ul><li>流收到内容后自然结束、却既没有结束标记也没有结束原因时，这一轮会被标记。</li><li>收尾时分开说明是「思考占满输出上限」还是「上游提前中断」，并给出可点的「继续」入口，从当前上下文接着跑。</li><li>正文有内容但流提前断掉的，标注为可能不完整。</li><li>这套提示与「继续」入口在任何模式下都给，不只是自动推进模式——否则关掉自动推进时，就只剩「它自己停了」这一种解释。</li></ul>
 <h2 id="跨项目并行"><a class="anchor" href="#跨项目并行" aria-hidden="true">#</a>跨项目并行</h2>
 <p>切换项目不再打断正在生成的对话：你离开的那一场会在后台继续跑，进度与结局落在右栏的任务中心。</p>
 <ul><li>同一项目内默认串行（两场同时改同一批文件坏了难查是谁写的）。</li><li>跨项目最多两场同时运行，可在「设置 → 多任务与项目」里调到 1–4。</li><li>超出上限的发送不会被吞掉，而是进队列并标出「排队中」，前一场一收工自动接上。</li><li>每条会话的 Token 各记各的，用量条只反映屏幕上这一场。</li></ul>
@@ -110,12 +113,17 @@
       <nav class="pager" aria-label="翻页"><a class="prev" href="./05-chat.html"><span class="dir">上一篇</span><span class="ttl">对话与消息</span></a><a class="next" href="./07-grind.html"><span class="dir">下一篇</span><span class="ttl">磨墨模式</span></a></nav>
       <footer class="site-footer">
         <span>SLATE（砚）· 本地 AI 协作调度台</span>
+        <span>
+          <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a> ·
+          <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a> ·
+          <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
+        </span>
         <span>MIT License · 文档随产品演进</span>
       </footer>
     </div>
   </main>
 
-  <aside class="toc" data-toc aria-label="本页目录"><div class="toc-title">本页目录</div><ul class="toc-list"><li class="lv2"><a href="#agent-autopilot-是什么">Agent Autopilot 是什么</a></li><li class="lv2"><a href="#三种运行强度对比">三种运行强度对比</a></li><li class="lv2"><a href="#循环里会发生什么">循环里会发生什么</a></li><li class="lv2"><a href="#干完了就停">干完了就停</a></li><li class="lv2"><a href="#自动催办">自动催办</a></li><li class="lv2"><a href="#continue-autopilot">Continue Autopilot</a></li><li class="lv2"><a href="#砚流落笔即所见">砚流：落笔即所见</a></li><li class="lv2"><a href="#停止是真取消">停止是真取消</a></li><li class="lv2"><a href="#目标模式">目标模式</a></li><li class="lv3"><a href="#六阶段闭环">六阶段闭环</a></li><li class="lv3"><a href="#任务清单">任务清单</a></li><li class="lv3"><a href="#四种退出方式">四种退出方式</a></li><li class="lv2"><a href="#输出截断四层防线">输出截断四层防线</a></li><li class="lv2"><a href="#跨项目并行">跨项目并行</a></li></ul></aside>
+  <aside class="toc" data-toc aria-label="本页目录"><div class="toc-title">本页目录</div><ul class="toc-list"><li class="lv2"><a href="#agent-autopilot-是什么">Agent Autopilot 是什么</a></li><li class="lv2"><a href="#三种运行强度对比">三种运行强度对比</a></li><li class="lv2"><a href="#循环里会发生什么">循环里会发生什么</a></li><li class="lv2"><a href="#干完了就停">干完了就停</a></li><li class="lv2"><a href="#自动催办">自动催办</a></li><li class="lv2"><a href="#continue-autopilot">Continue Autopilot</a></li><li class="lv2"><a href="#砚流落笔即所见">砚流：落笔即所见</a></li><li class="lv2"><a href="#停止是真取消">停止是真取消</a></li><li class="lv2"><a href="#目标模式">目标模式</a></li><li class="lv3"><a href="#六阶段闭环">六阶段闭环</a></li><li class="lv3"><a href="#任务清单">任务清单</a></li><li class="lv3"><a href="#四种退出方式">四种退出方式</a></li><li class="lv2"><a href="#输出截断四层防线">输出截断四层防线</a></li><li class="lv2"><a href="#一整轮只有思考没有正文">一整轮只有思考、没有正文</a></li><li class="lv2"><a href="#跨项目并行">跨项目并行</a></li></ul></aside>
 </div>
 
 <div class="search-overlay" data-search-overlay hidden>

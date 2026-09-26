@@ -37,8 +37,8 @@
     </button>
 
     <nav class="topbar-links">
-      <a href="https://carywang1234.github.io/SLATE/" target="_blank" rel="noopener">官网</a>
-      <a href="https://carywang1234.github.io/SLATE/docs/guide.html" target="_blank" rel="noopener">使用教程</a>
+      <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a>
+      <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a>
       <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
     </nav>
 
@@ -88,6 +88,9 @@
 <p>每个模型都有自己的上下文档位。上下文开得越大，单次请求能带的材料越多，消耗也越高。</p>
 <ul><li>模型配置里每一行的<strong>最大上下文</strong>滑杆可选：自动 / 100K / 200K / 400K / 600K / 800K / 1M。</li><li>选<strong>自动</strong>时，内置模型按自己的标称窗口取默认上限，并留出余量。</li><li>自定义模型与本地模型没有标称窗口，自动档会回落到全局的「上下文 Token 上限」（在 <strong>设置 → 上下文与项目</strong> 里改）。</li><li>选项超出模型标称窗口时会自动封顶，读数上会同时显示你选的值与实际生效的值。</li></ul>
 <p>自动压缩的触发阈值与界面上那根上下文条，都按同一个数字计算，不会出现「条满了却不压缩」的错位。</p>
+<h2 id="思考强度怎么选"><a class="anchor" href="#思考强度怎么选" aria-hidden="true">#</a>思考强度怎么选</h2>
+<p>输入框左侧的档位胶囊管的是「这一场让模型想多久」（自动 / 关 / 低 / 中 / 高），每个对话各存一份。刻度不是一张固定表——SLATE 按端点能力分了九类，弹窗里只出这个模型真能接的档：</p>
+<ul><li>强制思考的模型没有「关」这一档，最低就是「低」。</li><li>只能整体开关、不能调档的端点，刻度旁注明「低 / 中 / 高都按开」。</li><li>不支持思考的模型相关刻度直接置灰，并写明原因；切到该模型那一刻弹窗里会提示。</li><li>上游若以 400 点名这个字段，SLATE 会剥掉它重发一次——最坏是这次档位不生效，而不是模型用不了。</li><li>档位下方的小字（随墨 / 清墨 / 淡墨 / 浓墨 / 焦墨）只是浓淡提示；拖动时只预览，松手才生效并落盘。</li></ul>
 <h2 id="responses-api-模式"><a class="anchor" href="#responses-api-模式" aria-hidden="true">#</a>Responses API 模式</h2>
 <p>「模型配置」里有一个开关：<strong>启用 Responses API 模式</strong>。它用新版 API 格式发请求，仅部分模型支持。</p>
 <ul><li>默认关闭，按现有格式发送请求即可正常工作。</li><li>只有当你明确知道自己的端点支持 Responses API、并且需要它的能力时才打开。</li><li>不确定就不开；开错了通常表现为请求被上游拒绝。</li></ul>
@@ -108,12 +111,17 @@
       <nav class="pager" aria-label="翻页"><a class="prev" href="./03-interface.html"><span class="dir">上一篇</span><span class="ttl">界面总览：页签与三栏工作区</span></a><a class="next" href="./05-chat.html"><span class="dir">下一篇</span><span class="ttl">对话与消息</span></a></nav>
       <footer class="site-footer">
         <span>SLATE（砚）· 本地 AI 协作调度台</span>
+        <span>
+          <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a> ·
+          <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a> ·
+          <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
+        </span>
         <span>MIT License · 文档随产品演进</span>
       </footer>
     </div>
   </main>
 
-  <aside class="toc" data-toc aria-label="本页目录"><div class="toc-title">本页目录</div><ul class="toc-list"><li class="lv2"><a href="#在哪配置">在哪配置</a></li><li class="lv2"><a href="#预设模型">预设模型</a></li><li class="lv2"><a href="#添加自定义模型">添加自定义模型</a></li><li class="lv2"><a href="#使用本地模型">使用本地模型</a></li><li class="lv2"><a href="#api-key-与数据安全">API Key 与数据安全</a></li><li class="lv2"><a href="#上下文预算怎么定">上下文预算怎么定</a></li><li class="lv2"><a href="#responses-api-模式">Responses API 模式</a></li><li class="lv2"><a href="#轻量模型与重型模型的分工">轻量模型与重型模型的分工</a></li><li class="lv2"><a href="#切换模型与用量显示">切换模型与用量显示</a></li><li class="lv2"><a href="#常见问题">常见问题</a></li></ul></aside>
+  <aside class="toc" data-toc aria-label="本页目录"><div class="toc-title">本页目录</div><ul class="toc-list"><li class="lv2"><a href="#在哪配置">在哪配置</a></li><li class="lv2"><a href="#预设模型">预设模型</a></li><li class="lv2"><a href="#添加自定义模型">添加自定义模型</a></li><li class="lv2"><a href="#使用本地模型">使用本地模型</a></li><li class="lv2"><a href="#api-key-与数据安全">API Key 与数据安全</a></li><li class="lv2"><a href="#上下文预算怎么定">上下文预算怎么定</a></li><li class="lv2"><a href="#思考强度怎么选">思考强度怎么选</a></li><li class="lv2"><a href="#responses-api-模式">Responses API 模式</a></li><li class="lv2"><a href="#轻量模型与重型模型的分工">轻量模型与重型模型的分工</a></li><li class="lv2"><a href="#切换模型与用量显示">切换模型与用量显示</a></li><li class="lv2"><a href="#常见问题">常见问题</a></li></ul></aside>
 </div>
 
 <div class="search-overlay" data-search-overlay hidden>
