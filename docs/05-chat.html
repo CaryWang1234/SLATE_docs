@@ -71,7 +71,7 @@
 <p>鼠标移到消息上会浮出操作按钮：</p>
 <ul><li>「复制」把这条消息的内容放进剪贴板。</li><li>「重新生成」只出现在助手消息上。</li><li>「编辑内容」让正文就地变成输入框，保存后写回这条消息。</li><li>「删除此消息」会先问一次，删除后不可恢复。</li></ul>
 <h2 id="四种输入方式对比"><a class="anchor" href="#四种输入方式对比" aria-hidden="true">#</a>四种输入方式对比</h2>
-<div class="table-wrap"><table><thead><tr><th>输入方式</th><th>怎么用</th><th>适合什么</th></tr></thead><tbody><tr><td>文字</td><td>直接打字，<code>Enter</code> 发送</td><td>绝大多数需求</td></tr><tr><td>语音</td><td>点输入框右侧的麦克风按钮口述</td><td>不想打字、边说边理思路</td></tr><tr><td>附件</td><td>点回形针按钮选择文件</td><td>让 AI 读一份现成的文件</td></tr><tr><td>@ 提及</td><td>输入 <code>@</code> 选候选，或从 ＋ 菜单进入对应分组</td><td>明确指定用哪个工具、技能或哪份文件</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>输入方式</th><th>怎么用</th><th>适合什么</th></tr></thead><tbody><tr><td>文字</td><td>直接打字，<code>Enter</code> 发送</td><td>绝大多数需求</td></tr><tr><td>语音</td><td>点输入框右侧的麦克风按钮口述</td><td>不想打字、边说边理思路</td></tr><tr><td>优化提示词</td><td>点语音按钮左边的星形按钮，让模型把草稿改写一遍</td><td>需求写得含糊，想让措辞更明确</td></tr><tr><td>附件</td><td>点回形针按钮选择文件</td><td>让 AI 读一份现成的文件</td></tr><tr><td>@ 提及</td><td>输入 <code>@</code> 选候选，或从 ＋ 菜单进入对应分组</td><td>明确指定用哪个工具、技能或哪份文件</td></tr></tbody></table></div>
 <h2 id="附件与多模态输入"><a class="anchor" href="#附件与多模态输入" aria-hidden="true">#</a>附件与多模态输入</h2>
 <p>点输入框左侧的回形针按钮添加附件，单个文件最大 10MB。</p>
 <ul><li>文本类（<code>.md</code> / <code>.html</code> / <code>.css</code> / <code>.js</code> / <code>.py</code> / <code>.json</code> / <code>.yaml</code> / <code>.log</code> 等）：直接读取正文。</li><li>表格类（<code>.csv</code> / <code>.tsv</code>）：解析成结构化数据，而不是一整块文本。</li><li>图片（<code>.png</code> / <code>.jpg</code> / <code>.jpeg</code> / <code>.gif</code> / <code>.webp</code> / <code>.bmp</code> / <code>.svg</code>）：转成多模态输入交给模型看。</li><li>文档类（<code>.docx</code> / <code>.xlsx</code> / <code>.pdf</code>）：由 SLATE 自己解析出段落、表格与正文后再送入对话。</li></ul>
@@ -80,6 +80,11 @@
 <p>输入框右侧的麦克风按钮点一下开始口述，再点一下停止。</p>
 <ul><li>基于浏览器语音识别，边说边实时转写，转写结果直接落进输入框，不会打断你已有的草稿。</li><li>识别语言跟随界面语言：中文界面按中文识别，English 界面按英文识别。</li><li>需要浏览器与系统支持，Chrome / Edge 可用；首次使用需授权麦克风。</li></ul>
 <div class="callout callout-warning"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3.4 17.4 16.6H2.6Z"/><path d="M10 8.2v3.4M10 14v.1"/></svg><span>看不到麦克风按钮</span></div><div class="callout-body"><p>按钮只在当前浏览器支持语音识别时才显示。如果它没出现，说明这套环境不支持，请改用打字输入。</p></div></div>
+<h2 id="优化提示词"><a class="anchor" href="#优化提示词" aria-hidden="true">#</a>优化提示词</h2>
+<p>麦克风按钮左边那颗星形按钮，把输入框里已经写好的草稿交给模型改写一遍。它改的是<strong>你这条还没发的话</strong>，不是让模型替你回答。</p>
+<p>流程是：点一下 → 模型改写 → 弹窗里左右并排看原文与改写 → 自己决定。</p>
+<ul><li>点<strong>采用</strong>才写回输入框，然后你照常按 <code>Enter</code> 发送。</li><li>点<strong>保留原文</strong>、按 <code>Esc</code>、点弹窗外面，都算不采用，输入框一个字都不会变。</li><li>等结果的那几秒输入框还能继续打字。如果你（或语音听写）改了草稿，这次改写结果会被放弃，不会盖掉你新写的内容。</li><li>模型用代码块包住结果时，取的是里面的正文，回填进来的不会有那对反引号围栏。</li><li>用哪个模型在这里单独指定：<a href="./19-settings.html">设置 → AI 辅助功能 → 提示词优化</a>。关掉它，点按钮只会提示一句已关闭，一次请求都不发。</li></ul>
+<div class="callout callout-tip"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M10 13.4V9M10 6.6v.6"/><path d="M7.6 12.4h4.8"/></svg><span>它不改你的意思</span></div><div class="callout-body"><p>提示词里写给模型的要求是"保持原意、不要新增你没提到的目标与细节"，并且要求 <code>@</code> 提及、代码、路径、数字原样保留。改写只是把话说清楚，不是把需求换掉。</p></div></div>
 <h2 id="提及"><a class="anchor" href="#提及" aria-hidden="true">#</a>@ 提及</h2>
 <p>在输入框输入 <code>@</code> 会弹出候选；也可以点输入框左侧的 ＋ 菜单，在「提及（@ 前缀）」分组里直接打开某一类：</p>
 <ul><li><strong>技能</strong>：把 <code>SKILL.md</code> 定义的流程注入这一条消息。</li><li><strong>工具</strong>：指定使用哪个内置工具。</li><li><strong>MCP</strong>：使用外部 MCP Server 提供的工具。</li><li><strong>文件</strong>：把项目文件的正文（或目录结构）注入这条消息，打开项目后才可用。</li></ul>
@@ -111,7 +116,7 @@
     </div>
   </main>
 
-  <aside class="toc" data-toc aria-label="本页目录"><div class="toc-title">本页目录</div><ul class="toc-list"><li class="lv2"><a href="#开一场对话">开一场对话</a></li><li class="lv2"><a href="#消息基本操作">消息基本操作</a></li><li class="lv2"><a href="#编辑与删除消息">编辑与删除消息</a></li><li class="lv2"><a href="#四种输入方式对比">四种输入方式对比</a></li><li class="lv2"><a href="#附件与多模态输入">附件与多模态输入</a></li><li class="lv2"><a href="#语音输入">语音输入</a></li><li class="lv2"><a href="#提及">@ 提及</a></li><li class="lv2"><a href="#上下文与用量">上下文与用量</a></li><li class="lv2"><a href="#记忆与画像的自动注入">记忆与画像的自动注入</a></li><li class="lv2"><a href="#历史会话">历史会话</a></li><li class="lv2"><a href="#定时任务产出的会话">定时任务产出的会话</a></li></ul></aside>
+  <aside class="toc" data-toc aria-label="本页目录"><div class="toc-title">本页目录</div><ul class="toc-list"><li class="lv2"><a href="#开一场对话">开一场对话</a></li><li class="lv2"><a href="#消息基本操作">消息基本操作</a></li><li class="lv2"><a href="#编辑与删除消息">编辑与删除消息</a></li><li class="lv2"><a href="#四种输入方式对比">四种输入方式对比</a></li><li class="lv2"><a href="#附件与多模态输入">附件与多模态输入</a></li><li class="lv2"><a href="#语音输入">语音输入</a></li><li class="lv2"><a href="#优化提示词">优化提示词</a></li><li class="lv2"><a href="#提及">@ 提及</a></li><li class="lv2"><a href="#上下文与用量">上下文与用量</a></li><li class="lv2"><a href="#记忆与画像的自动注入">记忆与画像的自动注入</a></li><li class="lv2"><a href="#历史会话">历史会话</a></li><li class="lv2"><a href="#定时任务产出的会话">定时任务产出的会话</a></li></ul></aside>
 </div>
 
 <div class="search-overlay" data-search-overlay hidden>
