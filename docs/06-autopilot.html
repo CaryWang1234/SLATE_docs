@@ -82,6 +82,7 @@
 <h2 id="continue-autopilot"><a class="anchor" href="#continue-autopilot" aria-hidden="true">#</a>Continue Autopilot</h2>
 <p>轮数用完不等于干完。<strong>Continue Autopilot 默认开启</strong>，在「设置 → 自动推进」里可以关掉。</p>
 <ul><li>最后一轮模型还在动手：把上限往后推 8 轮，让它把手上的活做完。最多追加 3 次，不会无限续跑。</li><li>最后一轮模型空手停笔：把任务清单里剩下的项目念回给它，催它继续推进，或明确回复【任务完成】。</li></ul>
+<p>推完 3 次还是到了上限、这一场并没有自己收口时，散场之后不必再手动点：只要这场不在手动审批档（自动审批 / 完全访问 / 夜间模式），SLATE 就替你按下「继续跑完」。它会等这一场真正空下来——压缩与记忆蒸馏这些收尾还要占着这场几秒——再发那句「继续」，一场最多自动续 2 次，并给一句「轮数用尽 · 已自动续跑（第 1/2 次）」的回声。手动审批档不自动按：那一档的语义就是每一步都要人点头，它只把「继续跑完」条挂在消息区等你。额度用尽或自动续没接上时，那颗手动按钮仍在原地，从断点接着推进，不会重头再来。</p>
 <div class="callout callout-warning"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3.4 17.4 16.6H2.6Z"/><path d="M10 8.2v3.4M10 14v.1"/></svg><span>追加轮数有上限</span></div><div class="callout-body"><p>追加只放宽上限，不会取消止损线。若任务本身需要更长的闭环，直接开目标模式，而不是靠反复追加。</p></div></div>
 <h2 id="砚流落笔即所见"><a class="anchor" href="#砚流落笔即所见" aria-hidden="true">#</a>砚流：落笔即所见</h2>
 <p>模型逐个 token 写工具参数时，砚流会按工具的参数结构实时推断哪些字段已经写完、正在写哪个字段，把参数成形的过程演成一行可见的预览。</p>
