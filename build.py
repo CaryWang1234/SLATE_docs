@@ -2,12 +2,15 @@
 # -*- coding: utf-8 -*-
 """SLATE 文档站生成器 · 零依赖（只用 Python 标准库）
 
-把 content/*.md 渲染成 docs/ 下的静态站点：左侧分组导航、面包屑、右侧本页目录、
-客户端搜索、明暗主题、代码复制、翻页。产物可直接部署到 GitHub Pages。
+把 content/<lang>/*.md 渲染成 docs/ 下的双语静态站：EN 在站点根、ZH 在 /zh/，
+两套树共用一个 assets/。左侧分组导航、面包屑、右侧本页目录、客户端搜索、明暗主题、
+语言切换、代码复制、翻页。产物可直接部署到 GitHub Pages。
+
+双语是**硬约束**：文件名两侧必须一一对应，order 必须相同，缺任一侧就报错不出站。
 
 用法：
     python build.py             # 生成到 docs/
-    python build.py --check     # 只校验 frontmatter 与站内链接，不写文件
+    python build.py --check     # 只校验 frontmatter、配对、站内链接与锚点，不写文件
     python build.py --clean     # 生成前清空输出目录
     python build.py --out site  # 换输出目录
 """
@@ -27,16 +30,104 @@ CONTENT_DIR = ROOT / "content"
 THEME_DIR = ROOT / "theme"
 DEFAULT_OUT = ROOT / "docs"
 
+# EN 在站点根、ZH 在 /zh/ —— 与 SLATE Teams 文档站同一摆法
+LANGS = ("en", "zh")
+PREFIX = {"en": "./", "zh": "../"}          # 从这一层的页面回到站点根
+TWIN_DIR = {"en": "zh/", "zh": ""}          # 切到对侧语言要去哪
+
+STRINGS = {
+    "zh": {
+        "html_lang": "zh-CN",
+        "site": "SLATE 文档",
+        "docs": "文档",
+        "toc": "本页目录",
+        "toc_empty": "这页没有小节",
+        "prev": "上一篇",
+        "next": "下一篇",
+        "copy": "复制",
+        "copied": "已复制",
+        "section": "文档",
+        "search": "搜索文档",
+        "search_hint": "搜索文档…",
+        "no_result": "没有匹配的内容，换个关键词试试",
+        "results": "条结果",
+        "footer": "SLATE（砚）· 本地 AI 协作调度台",
+        "license": "MIT License · 文档随产品演进",
+        "skip": "跳到正文",
+        "menu": "打开导航",
+        "theme": "切换明暗主题",
+        "nav": "文档导航",
+        "crumbs": "面包屑",
+        "pager": "翻页",
+        "kbd_move": "↑ ↓ 选择",
+        "kbd_open": "Enter 打开",
+        "kbd_close": "Esc 关闭",
+        "home_site": "官网",
+        "guide": "使用教程",
+        "alt_label": "English",
+        "alt_title": "阅读英文版",
+        "badge": "SLATE 文档 · 共 {n} 篇",
+        "hero": "把灵感研磨成<br>结构化方案",
+        "lede": ("SLATE（砚）是跑在你自己机器上的 AI 协作调度台：多模型对话、Agent 自动执行、"
+                 "工具调用、团队辩论、白板逻辑链，把零散想法整理成可以直接交付的方案与提示词。"),
+        "cta": ("从认识 SLATE 开始", "安装与启动", "常见问题"),
+    },
+    "en": {
+        "html_lang": "en",
+        "site": "SLATE Docs",
+        "docs": "Docs",
+        "toc": "On this page",
+        "toc_empty": "No sections on this page",
+        "prev": "Previous",
+        "next": "Next",
+        "copy": "Copy",
+        "copied": "Copied",
+        "section": "Docs",
+        "search": "Search docs",
+        "search_hint": "Search docs…",
+        "no_result": "No matching content — try another keyword",
+        "results": "results",
+        "footer": "SLATE · a local AI orchestration desk",
+        "license": "MIT License · docs evolve with the product",
+        "skip": "Skip to content",
+        "menu": "Open navigation",
+        "theme": "Toggle theme",
+        "nav": "Documentation navigation",
+        "crumbs": "Breadcrumbs",
+        "pager": "Pagination",
+        "kbd_move": "↑ ↓ move",
+        "kbd_open": "Enter open",
+        "kbd_close": "Esc close",
+        "home_site": "Home site",
+        "guide": "Tutorial",
+        "alt_label": "中文",
+        "alt_title": "Read in Chinese",
+        "badge": "SLATE docs · {n} chapters",
+        "hero": "Grind inspiration<br>into structured plans",
+        "lede": ("SLATE is an AI orchestration desk that runs on your own machine: multi-model chat, "
+                 "autonomous agents, tool calls, team debates and whiteboard logic chains, turning "
+                 "scattered ideas into plans and prompts you can hand off."),
+        "cta": ("Start with SLATE", "Install & launch", "FAQ"),
+    },
+}
+
+SITE_HOME = "https://slate-ai.site/"
+SITE_GUIDE = "https://slate-ai.site/guide.html"
+
 try:  # Windows 控制台默认 GBK，中文与 ✓ 会直接抛 UnicodeEncodeError
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except (AttributeError, OSError):
     pass
 
+CALLOUT_ICONS = {
+    "note": '<circle cx="10" cy="10" r="7.2"/><path d="M10 9v4.6M10 6.6v.1"/>',
+    "tip": '<circle cx="10" cy="10" r="7.2"/><path d="M10 13.4V9M10 6.6v.6"/><path d="M7.6 12.4h4.8"/>',
+    "warning": '<path d="M10 3.4 17.4 16.6H2.6Z"/><path d="M10 8.2v3.4M10 14v.1"/>',
+    "danger": '<circle cx="10" cy="10" r="7.2"/><path d="M10 6.4v4.2M10 13.4v.2"/>',
+}
 CALLOUT_LABELS = {
-    "note": ("说明", '<circle cx="10" cy="10" r="7.2"/><path d="M10 9v4.6M10 6.6v.1"/>'),
-    "tip": ("提示", '<circle cx="10" cy="10" r="7.2"/><path d="M10 13.4V9M10 6.6v.6"/><path d="M7.6 12.4h4.8"/>'),
-    "warning": ("注意", '<path d="M10 3.4 17.4 16.6H2.6Z"/><path d="M10 8.2v3.4M10 14v.1"/>'),
-    "danger": ("警告", '<circle cx="10" cy="10" r="7.2"/><path d="M10 6.4v4.2M10 13.4v.2"/>'),
+    "zh": {"note": "说明", "tip": "提示", "warning": "注意", "danger": "警告"},
+    "en": {"note": "Note", "tip": "Tip", "warning": "Warning", "danger": "Danger"},
 }
 
 LIST_RE = re.compile(r"^(\s*)([-*+]|\d+[.)])\s+(.*)$")
@@ -136,23 +227,25 @@ def render_inline(text: str) -> str:
 
 # ── 块级渲染 ───────────────────────────────────────────────────
 
-def render_code_block(lang: str, body: str) -> str:
-    label = lang or "text"
+def render_code_block(code_lang: str, body: str, ui: dict) -> str:
+    label = code_lang or "text"
     return (
         '<div class="code-block">'
         f'<div class="code-head"><span class="code-lang">{html.escape(label)}</span>'
-        '<button class="code-copy" type="button" data-copy>复制</button></div>'
+        f'<button class="code-copy" type="button" data-copy data-copied="{ui["copied"]}">'
+        f'{html.escape(ui["copy"])}</button></div>'
         f'<pre><code class="language-{html.escape(label)}">{html.escape(body, quote=False)}</code></pre>'
         "</div>"
     )
 
 
-def render_callout(kind: str, title: str, inner: str) -> str:
-    label, icon = CALLOUT_LABELS.get(kind, CALLOUT_LABELS["note"])
-    head = title or label
+def render_callout(kind: str, title: str, inner: str, ui_lang: str) -> str:
+    labels = CALLOUT_LABELS[ui_lang]
+    kind = kind if kind in labels else "note"
+    head = title or labels[kind]
     return (
-        f'<div class="callout callout-{kind if kind in CALLOUT_LABELS else "note"}">'
-        f'<div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true">{icon}</svg>'
+        f'<div class="callout callout-{kind}">'
+        f'<div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true">{CALLOUT_ICONS[kind]}</svg>'
         f"<span>{render_inline(head)}</span></div>"
         f'<div class="callout-body">{inner}</div>'
         "</div>"
@@ -257,7 +350,8 @@ def is_table_start(lines: list[str], i: int) -> bool:
     return bool(re.match(r"^\|?[\s:\-|]+\|[\s:\-|]*$", nxt)) and "-" in nxt
 
 
-def render_blocks(lines: list[str], toc: list[dict] | None, used_ids: dict[str, int]) -> str:
+def render_blocks(lines: list[str], toc: list[dict] | None, used_ids: dict[str, int],
+                  ui: dict, ui_lang: str) -> str:
     out: list[str] = []
     i = 0
     n = len(lines)
@@ -279,7 +373,7 @@ def render_blocks(lines: list[str], toc: list[dict] | None, used_ids: dict[str, 
                 buf.append(lines[i])
                 i += 1
             i += 1
-            out.append(render_code_block(lang, "\n".join(buf)))
+            out.append(render_code_block(lang, "\n".join(buf), ui))
             continue
 
         directive = DIRECTIVE_RE.match(stripped)
@@ -292,8 +386,8 @@ def render_blocks(lines: list[str], toc: list[dict] | None, used_ids: dict[str, 
                 buf.append(lines[i])
                 i += 1
             i += 1
-            inner = render_blocks(buf, None, used_ids)
-            out.append(render_callout(kind, title, inner))
+            inner = render_blocks(buf, None, used_ids, ui, ui_lang)
+            out.append(render_callout(kind, title, inner, ui_lang))
             continue
 
         head = HEAD_RE.match(stripped)
@@ -341,7 +435,7 @@ def render_blocks(lines: list[str], toc: list[dict] | None, used_ids: dict[str, 
             while i < n and lines[i].strip().startswith(">"):
                 buf.append(re.sub(r"^\s*>\s?", "", lines[i]))
                 i += 1
-            out.append(f"<blockquote>{render_blocks(buf, None, used_ids)}</blockquote>")
+            out.append(f"<blockquote>{render_blocks(buf, None, used_ids, ui, ui_lang)}</blockquote>")
             continue
 
         buf = []
@@ -366,38 +460,66 @@ def render_blocks(lines: list[str], toc: list[dict] | None, used_ids: dict[str, 
 # ── 站点装配 ───────────────────────────────────────────────────
 
 class Page:
-    def __init__(self, meta: dict, body: str, source: Path):
+    def __init__(self, meta: dict, body: str, source: Path, lang: str):
         self.source = source
+        self.lang = lang
+        self.ui = STRINGS[lang]
         self.slug = source.stem
+        self.key = f"{lang}/{source.stem}"
         self.title = meta.get("title") or self.slug
         self.description = meta.get("description", "")
-        self.section = meta.get("section", "文档")
+        self.section = meta.get("section", self.ui["section"])
         try:
             self.order = int(meta.get("order", "999"))
         except ValueError:
             self.order = 999
         self.toc: list[dict] = []
-        self.content = render_blocks(body.splitlines(), self.toc, {})
+        self.content = render_blocks(body.splitlines(), self.toc, {}, self.ui, lang)
         self.text = plain_text(body)
         self.href = f"./{self.slug}.html"
         self.warnings: list[str] = []
 
+    @property
+    def twin(self) -> str:
+        """切语言要去的那一页：EN 在根、ZH 在 /zh/，同文件名。"""
+        return f"{PREFIX[self.lang]}{TWIN_DIR[self.lang]}{self.slug}.html"
+
 
 def load_pages() -> list[Page]:
-    pages = []
-    for path in sorted(CONTENT_DIR.glob("*.md")):
-        meta, body = split_front(path.read_text(encoding="utf-8"))
-        page = Page(meta, body, path)
-        if not meta:
-            page.warnings.append(f"{path.name}: 缺少 frontmatter")
-        for key in ("title", "description", "section"):
-            if not meta.get(key):
-                page.warnings.append(f"{path.name}: frontmatter 缺少 {key}")
-        if not meta.get("order"):
-            page.warnings.append(f"{path.name}: frontmatter 缺少 order")
-        pages.append(page)
-    pages.sort(key=lambda p: (p.order, p.slug))
+    pages: list[Page] = []
+    for lang in LANGS:
+        for path in sorted((CONTENT_DIR / lang).glob("*.md")):
+            meta, body = split_front(path.read_text(encoding="utf-8"))
+            page = Page(meta, body, path, lang)
+            if not meta:
+                page.warnings.append(f"{path.parent.name}/{path.name}: 缺少 frontmatter")
+            for key in ("title", "description", "section", "order"):
+                if not meta.get(key):
+                    page.warnings.append(f"{path.parent.name}/{path.name}: frontmatter 缺少 {key}")
+            pages.append(page)
+    pages.sort(key=lambda p: (p.lang, p.order, p.slug))
     return pages
+
+
+def check_pairs(pages: list[Page]) -> list[str]:
+    """双语是硬约束：文件名一一对应，order 相同。"""
+    problems: list[str] = []
+    by_lang: dict[str, dict[str, Page]] = {lang: {} for lang in LANGS}
+    for page in pages:
+        by_lang[page.lang][page.slug] = page
+    for slug in sorted(set(by_lang["en"]) | set(by_lang["zh"])):
+        en, zh = by_lang["en"].get(slug), by_lang["zh"].get(slug)
+        if en is None or zh is None:
+            missing = "en" if en is None else "zh"
+            problems.append(f"{slug}.md 缺 {missing} 侧（双语必须成对）")
+            continue
+        if en.order != zh.order:
+            problems.append(f"{slug}.md 两侧 order 不一致：en={en.order} / zh={zh.order}")
+    return problems
+
+
+def tree(pages: list[Page], lang: str) -> list[Page]:
+    return [p for p in pages if p.lang == lang]
 
 
 def build_sidebar(pages: list[Page], current: Page | None) -> str:
@@ -425,7 +547,7 @@ def build_sidebar(pages: list[Page], current: Page | None) -> str:
 
 def build_breadcrumbs(page: Page) -> str:
     return (
-        '<a href="./index.html">文档</a>'
+        '<a href="./index.html">' + html.escape(page.ui["docs"]) + "</a>"
         '<span class="sep">/</span>'
         f'<span>{html.escape(page.section)}</span>'
         '<span class="sep">/</span>'
@@ -434,23 +556,24 @@ def build_breadcrumbs(page: Page) -> str:
 
 
 def build_toc(page: Page) -> str:
+    ui = page.ui
     if not page.toc:
-        return '<div class="toc-title">本页目录</div><div class="toc-empty">这页没有小节</div>'
+        return f'<div class="toc-title">{ui["toc"]}</div><div class="toc-empty">{ui["toc_empty"]}</div>'
     items = "".join(
         f'<li class="lv{row["level"]}"><a href="#{row["id"]}">{html.escape(row["text"])}</a></li>'
         for row in page.toc
     )
-    return f'<div class="toc-title">本页目录</div><ul class="toc-list">{items}</ul>'
+    return f'<div class="toc-title">{ui["toc"]}</div><ul class="toc-list">{items}</ul>'
 
 
-def build_pager(index: int, pages: list[Page]) -> str:
+def build_pager(index: int, pages: list[Page], ui: dict) -> str:
     prev_page = pages[index - 1] if index > 0 else None
     next_page = pages[index + 1] if index + 1 < len(pages) else None
 
     def cell(page: Page | None, direction: str) -> str:
         if not page:
             return '<span class="empty"></span>'
-        label = "上一篇" if direction == "prev" else "下一篇"
+        label = ui["prev"] if direction == "prev" else ui["next"]
         return (
             f'<a class="{direction}" href="{page.href}">'
             f'<span class="dir">{label}</span>'
@@ -460,7 +583,8 @@ def build_pager(index: int, pages: list[Page]) -> str:
     return cell(prev_page, "prev") + cell(next_page, "next")
 
 
-def build_home(pages: list[Page]) -> str:
+def build_home(pages: list[Page], lang: str) -> str:
+    ui = STRINGS[lang]
     groups: list[tuple[str, list[Page]]] = []
     for page in pages:
         if groups and groups[-1][0] == page.section:
@@ -482,26 +606,46 @@ def build_home(pages: list[Page]) -> str:
             f'<div class="card-grid">{cards}</div></section>'
         )
 
+    first, second, third = ui["cta"]
     template = (THEME_DIR / "home.html").read_text(encoding="utf-8")
-    return template.replace("{{CARDS}}", "".join(blocks)).replace("{{COUNT}}", str(len(pages)))
+    filled = {
+        "{{BADGE}}": ui["badge"].format(n=len(pages)),
+        "{{HERO_TITLE}}": ui["hero"],
+        "{{LEDE}}": html.escape(ui["lede"], quote=False),
+        "{{HREF_1}}": pages[0].href if pages else "#",
+        "{{HREF_2}}": next((p.href for p in pages if p.slug.startswith("02")), "./index.html"),
+        "{{HREF_3}}": next((p.href for p in pages if p.slug.startswith("20")), "./index.html"),
+        "{{CTA_1}}": html.escape(first),
+        "{{CTA_2}}": html.escape(second),
+        "{{CTA_3}}": html.escape(third),
+        "{{CARDS}}": "".join(blocks),
+    }
+    for key, value in filled.items():
+        template = template.replace(key, value)
+    return template
 
 
 def search_index_js(pages: list[Page]) -> str:
-    data = [
-        {
-            "t": page.title,
-            "u": page.href,
-            "s": page.section,
-            "h": [row["text"] for row in page.toc],
-            "x": page.text,
-        }
-        for page in pages
-    ]
-    return "window.SLATE_DOCS_INDEX = " + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ";\n"
+    """一次出两套索引；页面自己带 data-root，docs.js 负责拼回站点根。"""
+    data = {
+        lang: [
+            {
+                "t": page.title,
+                "u": f"{'' if lang == 'en' else 'zh/'}{page.slug}.html",
+                "s": page.section,
+                "h": [row["text"] for row in page.toc],
+                "x": page.text,
+            }
+            for page in tree(pages, lang)
+        ]
+        for lang in LANGS
+    }
+    return ("window.SLATE_DOCS_INDEX = "
+            + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ";\n")
 
 
 def check_links(pages: list[Page]) -> list[str]:
-    known = {page.slug: page for page in pages}
+    known = {page.key: page for page in pages}
     problems = []
     pattern = re.compile(r"\]\(([^)\s]+\.md)(#[^)\s]*)?\)")
     for page in pages:
@@ -509,24 +653,34 @@ def check_links(pages: list[Page]) -> list[str]:
         for match in pattern.finditer(body):
             target = match.group(1)
             name = Path(target).name
-            if Path(target).stem not in known:
-                problems.append(f"{page.source.name} → 链接指向不存在的页面：{target}")
+            stem = Path(target).stem
+            if f"{page.lang}/{stem}" not in known:
+                problems.append(f"{page.lang}/{page.source.name} → 链接指向不存在的页面：{target}")
                 continue
             anchor = (match.group(2) or "").lstrip("#")
             if anchor:
-                target_page = known[Path(target).stem]
+                target_page = known[f"{page.lang}/{stem}"]
                 ids = {row["id"] for row in target_page.toc}
                 if anchor not in ids:
                     problems.append(
-                        f"{page.source.name} → 锚点不存在：{name}#{anchor}（{target_page.title}）"
+                        f"{page.lang}/{page.source.name} → 锚点不存在：{name}#{anchor}（{target_page.title}）"
                     )
     return problems
+
+
+def fill(template: str, ui: dict, extra: dict) -> str:
+    out = template
+    for key, value in extra.items():
+        out = out.replace(key, value)
+    for key, value in ui.items():
+        if isinstance(value, str):
+            out = out.replace("{{T_" + key.upper() + "}}", html.escape(value))
+    return out
 
 
 def render_site(pages: list[Page], out_dir: Path) -> int:
     layout = (THEME_DIR / "layout.html").read_text(encoding="utf-8")
     icon_src = THEME_DIR / "icon.png"
-    icon_href = "./assets/icon.png" if icon_src.exists() else ""
     assets_dir = out_dir / "assets"
 
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -537,61 +691,86 @@ def render_site(pages: list[Page], out_dir: Path) -> int:
     if icon_src.exists():
         shutil.copy2(icon_src, assets_dir / "icon.png")
     (out_dir / ".nojekyll").write_text("", encoding="utf-8")
-
-    def render(page_title: str, description: str, body_attrs: str, sidebar: str,
-               crumbs: str, content: str, pager: str, toc: str) -> str:
-        return (
-            layout.replace("{{PAGE_TITLE}}", html.escape(page_title))
-            .replace("{{DESCRIPTION}}", html.escape(description, quote=True))
-            .replace("{{ICON}}", icon_href)
-            .replace("{{BODY_ATTRS}}", body_attrs)
-            .replace("{{SIDEBAR}}", sidebar)
-            .replace("{{BREADCRUMBS}}", crumbs)
-            .replace("{{CONTENT}}", content)
-            .replace("{{PAGER}}", pager)
-            .replace("{{TOC}}", toc)
-        )
+    # CNAME 是仓库根的受跟踪文件，产物目录要被它带着走——--clean 会连它一起删掉
+    cname = ROOT / "CNAME"
+    if cname.exists():
+        shutil.copy2(cname, out_dir / "CNAME")
 
     written = 0
-    for index, page in enumerate(pages):
-        heading = f'<h1 class="doc-title" id="top">{render_inline(page.title)}</h1>'
-        out = render(
-            f"{page.title} · SLATE 文档",
-            page.description,
-            f'data-page="{page.slug}"',
-            build_sidebar(pages, page),
-            build_breadcrumbs(page),
-            heading + "\n" + page.content,
-            build_pager(index, pages),
-            build_toc(page),
-        )
-        (out_dir / f"{page.slug}.html").write_text(out, encoding="utf-8", newline="\n")
-        written += 1
+    for lang in LANGS:
+        ui = STRINGS[lang]
+        lang_pages = tree(pages, lang)
+        if not lang_pages:
+            continue
+        sub = Path("zh") if lang == "zh" else Path(".")
+        (out_dir / sub).mkdir(parents=True, exist_ok=True)
 
-    home = render(
-        "SLATE 文档 · 本地 AI 协作调度台",
-        "SLATE（砚）面向使用者的完整文档：安装、对话、Agent Autopilot、目标模式、磨墨、工具与技能、团队与工作流、项目与数据、移动端遥控与设置。",
-        'data-layout="home"',
-        build_sidebar(pages, None),
-        "",
-        build_home(pages),
-        "",
-        "",
-    )
-    (out_dir / "index.html").write_text(home, encoding="utf-8", newline="\n")
-    written += 1
+        def emit(fname: str, page_title: str, description: str, body_attrs: str, sidebar: str,
+                 crumbs: str, content: str, pager: str, toc: str, alt_href: str) -> None:
+            alt_lang = "zh" if lang == "en" else "en"
+            extra = {
+                "{{PAGE_TITLE}}": html.escape(page_title, quote=True),
+                "{{DESCRIPTION}}": html.escape(description, quote=True),
+                "{{ROOT}}": PREFIX[lang],
+                "{{LANG}}": lang,
+                "{{HTML_LANG}}": ui["html_lang"],
+                "{{ALT_HREF}}": alt_href,
+                "{{ALT_HREFLANG}}": STRINGS[alt_lang]["html_lang"],
+                "{{ALT_LABEL}}": html.escape(ui["alt_label"]),
+                "{{ALT_TITLE}}": html.escape(ui["alt_title"], quote=True),
+                "{{BODY_ATTRS}}": body_attrs,
+                "{{SIDEBAR}}": sidebar,
+                "{{BREADCRUMBS}}": crumbs,
+                "{{CONTENT}}": content,
+                "{{PAGER}}": pager,
+                "{{TOC}}": toc,
+                "{{SITE_HOME}}": SITE_HOME,
+                "{{SITE_GUIDE}}": SITE_GUIDE,
+            }
+            (out_dir / sub / fname).write_text(fill(layout, ui, extra), encoding="utf-8", newline="\n")
+
+        for index, page in enumerate(lang_pages):
+            heading = f'<h1 class="doc-title" id="top">{render_inline(page.title)}</h1>'
+            emit(
+                f"{page.slug}.html",
+                f"{page.title} · {ui['site']}",
+                page.description,
+                f'data-page="{page.slug}"',
+                build_sidebar(lang_pages, page),
+                build_breadcrumbs(page),
+                heading + "\n" + page.content,
+                build_pager(index, lang_pages, ui),
+                build_toc(page),
+                page.twin,
+            )
+            written += 1
+
+        emit(
+            "index.html",
+            ui["site"],
+            ui["lede"],
+            'data-layout="home"',
+            build_sidebar(lang_pages, None),
+            "",
+            build_home(lang_pages, lang),
+            "",
+            "",
+            "zh/index.html" if lang == "en" else "../index.html",
+        )
+        written += 1
     return written
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="生成 SLATE 文档站")
+    parser = argparse.ArgumentParser(description="生成 SLATE 双语文档站")
     parser.add_argument("--check", action="store_true", help="只校验，不写文件")
     parser.add_argument("--clean", action="store_true", help="生成前清空输出目录")
     parser.add_argument("--out", default="docs", help="输出目录，默认 docs/（GitHub Pages 认 main 分支的 /docs）")
     args = parser.parse_args()
 
-    if not CONTENT_DIR.is_dir():
-        print(f"× 找不到内容目录：{CONTENT_DIR}", file=sys.stderr)
+    missing = [str(CONTENT_DIR / lang) for lang in LANGS if not (CONTENT_DIR / lang).is_dir()]
+    if missing:
+        print(f"× 找不到内容目录：{'、'.join(missing)}", file=sys.stderr)
         return 1
 
     pages = load_pages()
@@ -600,9 +779,10 @@ def main() -> int:
         return 1
 
     warnings = [w for page in pages for w in page.warnings]
-    problems = check_links(pages)
+    problems = check_pairs(pages) + check_links(pages)
 
-    print(f"· 读取 {len(pages)} 个页面")
+    counts = {lang: len(tree(pages, lang)) for lang in LANGS}
+    print(f"· 读取 {len(pages)} 个页面（en {counts['en']} · zh {counts['zh']}）")
     for item in warnings:
         print(f"  ! {item}")
     for item in problems:

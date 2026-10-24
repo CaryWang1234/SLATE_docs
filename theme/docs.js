@@ -3,7 +3,17 @@
   'use strict';
 
   var root = document.documentElement;
-  var INDEX = window.SLATE_DOCS_INDEX || [];
+  /* 两套索引一份文件：页面自己声明在哪门语言、离站点根多远，这里拼回可点的 href */
+  var LANG = document.body.getAttribute('data-lang') === 'zh' ? 'zh' : 'en';
+  var BASE = document.body.getAttribute('data-root') || './';
+  var COPY = window.SLATE_DOCS_INDEX || {};
+  var INDEX = (COPY[LANG] || []).map(function (item) {
+    return { t: item.t, u: BASE + item.u, s: item.s, h: item.h, x: item.x };
+  });
+  var TEXT = {
+    empty: document.body.getAttribute('data-search-empty') || 'No matching content',
+    docs: document.body.getAttribute('data-search-docs') || 'Docs'
+  };
 
   /* ── 明暗主题 ─────────────────────────────── */
 
@@ -92,12 +102,14 @@
       if (!code) return;
       var text = code.textContent;
 
+      var label = btn.textContent;
+
       function done() {
         btn.classList.add('done');
-        btn.textContent = '已复制';
+        btn.textContent = btn.getAttribute('data-copied') || label;
         setTimeout(function () {
           btn.classList.remove('done');
-          btn.textContent = '复制';
+          btn.textContent = label;
         }, 1600);
       }
 
@@ -209,7 +221,7 @@
       cursor = 0;
 
       if (!hits.length) {
-        box.innerHTML = '<div class="search-empty">没有匹配的内容，换个关键词试试</div>';
+        box.innerHTML = '<div class="search-empty">' + esc(TEXT.empty) + '</div>';
         return;
       }
 
@@ -218,7 +230,7 @@
           return (
             '<a class="search-result' + (i === 0 ? ' active' : '') + '" href="' + esc(item.u) + '">' +
               '<div class="r-top">' + esc(item.t) +
-                '<span class="r-sec">' + esc(item.s || '文档') + '</span>' +
+                '<span class="r-sec">' + esc(item.s || TEXT.docs) + '</span>' +
               '</div>' +
               '<div class="r-snippet">' + snippet(item, terms) + '</div>' +
             '</a>'

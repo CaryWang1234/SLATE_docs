@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>记忆、画像与知识库 · SLATE 文档</title>
-<meta name="description" content="让 SLATE 记住你的偏好、背景与项目知识">
-<link rel="icon" href="./assets/icon.png">
+<title>Memory, User Profile and Knowledge Base · SLATE Docs</title>
+<meta name="description" content="Let SLATE remember your preferences, background and project knowledge">
+<link rel="icon" type="image/png" href="./assets/icon.png">
+<link rel="alternate" hreflang="zh-CN" href="./zh/13-memory-knowledge.html">
 <script>
   try {
     var saved = localStorage.getItem('slate-docs-theme');
@@ -14,35 +15,37 @@
 </script>
 <link rel="stylesheet" href="./assets/docs.css">
 </head>
-<body data-page="13-memory-knowledge">
+<body data-page="13-memory-knowledge" data-lang="en" data-root="./" data-search-empty="No matching content — try another keyword" data-search-docs="Docs">
 
-<a class="skip-link" href="#main">跳到正文</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="topbar">
   <div class="topbar-inner">
-    <button class="icon-btn menu-btn" type="button" data-menu aria-label="打开导航" aria-expanded="false">
+    <button class="icon-btn menu-btn" type="button" data-menu aria-label="Open navigation" aria-expanded="false">
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
     </button>
 
     <a class="brand" href="./index.html">
       <img class="brand-logo" src="./assets/icon.png" alt="">
       <span class="brand-name">SLATE</span>
-      <span class="brand-sub">文档</span>
+      <span class="brand-sub">Docs</span>
     </a>
 
     <button class="search-trigger" type="button" data-search-open>
       <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="M13.2 13.2 17 17"/></svg>
-      <span>搜索文档</span>
+      <span>Search docs</span>
       <kbd>Ctrl K</kbd>
     </button>
 
     <nav class="topbar-links">
-      <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a>
-      <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a>
+      <a href="https://slate-ai.site/" target="_blank" rel="noopener">Home site</a>
+      <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">Tutorial</a>
       <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
     </nav>
 
-    <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="切换明暗主题">
+    <a class="lang-switch" href="./zh/13-memory-knowledge.html" hreflang="zh-CN" title="Read in Chinese">中文</a>
+
+    <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="Toggle theme">
       <svg class="ico-moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16 12.3A6.6 6.6 0 0 1 7.7 4a6.8 6.8 0 1 0 8.3 8.3Z"/></svg>
       <svg class="ico-sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.6"/><path d="M10 2v2.2M10 15.8V18M2 10h2.2M15.8 10H18M4.3 4.3l1.6 1.6M14.1 14.1l1.6 1.6M15.7 4.3l-1.6 1.6M5.9 14.1l-1.6 1.6"/></svg>
     </button>
@@ -52,78 +55,78 @@
 <div class="shell">
   <div class="scrim" data-scrim hidden></div>
 
-  <aside class="sidebar" data-sidebar aria-label="文档导航">
-    <nav class="sidebar-nav"><div class="nav-group"><div class="nav-group-title">开始使用</div><ul class="nav-list"><li><a class="nav-link" href="./01-what-is-slate.html">认识 SLATE</a></li><li><a class="nav-link" href="./02-install.html">安装与启动</a></li><li><a class="nav-link" href="./03-interface.html">界面总览：页签与三栏工作区</a></li><li><a class="nav-link" href="./04-models.html">模型接入与 API Key</a></li></ul></div><div class="nav-group"><div class="nav-group-title">对话与自动化</div><ul class="nav-list"><li><a class="nav-link" href="./05-chat.html">对话与消息</a></li><li><a class="nav-link" href="./06-autopilot.html">Agent Autopilot 与目标模式</a></li><li><a class="nav-link" href="./07-grind.html">磨墨模式</a></li><li><a class="nav-link" href="./08-tools-skills.html">内置工具与技能</a></li><li><a class="nav-link" href="./09-actions.html">Actions 流程说明书</a></li><li><a class="nav-link" href="./10-experts.html">专家包</a></li></ul></div><div class="nav-group"><div class="nav-group-title">协作与推演</div><ul class="nav-list"><li><a class="nav-link" href="./11-team.html">AI 团队与工作流</a></li><li><a class="nav-link" href="./12-whiteboard.html">白板式逻辑链</a></li><li><a class="nav-link active" href="./13-memory-knowledge.html">记忆、画像与知识库</a></li></ul></div><div class="nav-group"><div class="nav-group-title">项目与数据</div><ul class="nav-list"><li><a class="nav-link" href="./14-projects.html">项目、工作区与分项目配置</a></li><li><a class="nav-link" href="./15-prompt-factory.html">提示词工厂</a></li><li><a class="nav-link" href="./16-schedule.html">任务清单与定时任务</a></li><li><a class="nav-link" href="./17-data.html">数据、备份与存储</a></li></ul></div><div class="nav-group"><div class="nav-group-title">移动与安全</div><ul class="nav-list"><li><a class="nav-link" href="./18-mobile.html">移动端遥控与局域网访问</a></li><li><a class="nav-link" href="./19-settings.html">设置与安全审批</a></li></ul></div><div class="nav-group"><div class="nav-group-title">常见问题</div><ul class="nav-list"><li><a class="nav-link" href="./20-faq.html">常见问题</a></li></ul></div></nav>
+  <aside class="sidebar" data-sidebar aria-label="Documentation navigation">
+    <nav class="sidebar-nav"><div class="nav-group"><div class="nav-group-title">Start</div><ul class="nav-list"><li><a class="nav-link" href="./01-what-is-slate.html">What SLATE is</a></li><li><a class="nav-link" href="./02-install.html">Install &amp; launch</a></li><li><a class="nav-link" href="./03-interface.html">Interface overview: tabs and the three-column workspace</a></li><li><a class="nav-link" href="./04-models.html">Models &amp; API Keys</a></li><li><a class="nav-link" href="./05-chat.html">Chat &amp; messages</a></li></ul></div><div class="nav-group"><div class="nav-group-title">Chat &amp; Automation</div><ul class="nav-list"><li><a class="nav-link" href="./06-autopilot.html">Agent Autopilot and Target Mode</a></li><li><a class="nav-link" href="./07-grind.html">Grind Mode</a></li><li><a class="nav-link" href="./08-tools-skills.html">Built-in tools and skills</a></li><li><a class="nav-link" href="./09-actions.html">Actions process specs</a></li><li><a class="nav-link" href="./10-experts.html">Expert Packs</a></li></ul></div><div class="nav-group"><div class="nav-group-title">Collaboration &amp; Reasoning</div><ul class="nav-list"><li><a class="nav-link" href="./11-team.html">AI Team and Workflows</a></li><li><a class="nav-link" href="./12-whiteboard.html">Whiteboard logic chains</a></li><li><a class="nav-link active" href="./13-memory-knowledge.html">Memory, User Profile and Knowledge Base</a></li></ul></div><div class="nav-group"><div class="nav-group-title">Projects &amp; Data</div><ul class="nav-list"><li><a class="nav-link" href="./14-projects.html">Projects, workspaces and per-project configuration</a></li><li><a class="nav-link" href="./15-prompt-factory.html">Prompt Factory</a></li><li><a class="nav-link" href="./16-schedule.html">Task list and Scheduled Tasks</a></li><li><a class="nav-link" href="./17-data.html">Data, backups and storage</a></li></ul></div><div class="nav-group"><div class="nav-group-title">Mobile &amp; Security</div><ul class="nav-list"><li><a class="nav-link" href="./18-mobile.html">Mobile remote control and LAN access</a></li><li><a class="nav-link" href="./19-settings.html">Settings and security approvals</a></li></ul></div><div class="nav-group"><div class="nav-group-title">FAQ</div><ul class="nav-list"><li><a class="nav-link" href="./20-faq.html">FAQ</a></li></ul></div></nav>
   </aside>
 
   <main class="main" id="main">
     <div class="main-inner">
-      <nav class="breadcrumbs" aria-label="面包屑"><a href="./index.html">文档</a><span class="sep">/</span><span>协作与推演</span><span class="sep">/</span><span class="current">记忆、画像与知识库</span></nav>
-      <article class="prose"><h1 class="doc-title" id="top">记忆、画像与知识库</h1>
-<h2 id="为什么要有记忆"><a class="anchor" href="#为什么要有记忆" aria-hidden="true">#</a>为什么要有记忆</h2>
-<p>每开一条新对话就重新交代一遍"我用 Python 和 TypeScript""这个仓库不吃顺手重构""回答别写长篇铺垫"——这本身就是损耗。记忆与知识库把这类信息从"每次重复说"变成"一次沉淀、长期复用"：SLATE 在对话中自己攒下要点，下次开口之前就已经知道背景。</p>
-<p>本页讲四件事：长期记忆怎么来怎么改、用户画像是什么、灵光捕获了什么、知识库怎么按归属分家。</p>
-<h2 id="记忆面板在哪"><a class="anchor" href="#记忆面板在哪" aria-hidden="true">#</a>记忆面板在哪</h2>
-<p>顶栏的「记忆与画像」按钮打开同一个面板，里面四个标签页：</p>
-<div class="table-wrap"><table><thead><tr><th>标签页</th><th>管什么</th></tr></thead><tbody><tr><td>长期记忆</td><td>逐条沉淀下来的要点，可增删改</td></tr><tr><td>用户画像</td><td>角色、风格、技术栈等结构化信息</td></tr><tr><td>知识中心</td><td>知识文档的检索、添加与归属</td></tr><tr><td>文库</td><td>Markdown 笔记，支持 <code>[[双链]]</code>、标签与反向链接</td></tr></tbody></table></div>
-<p>手机上在底部「记忆」Tab 里管理长期记忆，详见 <a href="./18-mobile.html">移动端遥控与局域网访问</a>。</p>
-<h2 id="长期记忆攒下什么怎么来"><a class="anchor" href="#长期记忆攒下什么怎么来" aria-hidden="true">#</a>长期记忆：攒下什么、怎么来</h2>
-<ul><li><strong>对话中自动沉淀</strong>：每轮回复结束后，SLATE 会静默读一遍最近的对话，把值得长期保留的信息提炼成记忆条目——你的偏好、做过的决策、项目背景、术语约定、明确约束。</li><li><strong>手动添加</strong>：点「+ 添加记忆」写一条，并选一个分类。</li><li><strong>从对话提取</strong>：点「从对话提取」，把当前这场对话整理成候选记忆。</li><li><strong>自动去重</strong>：内容相同或高度相似的记忆不会被重复添加，提取结果会告诉你跳过了几条。</li></ul>
-<p>分类可选：偏好 / 决策 / 项目 / 术语 / 事实 / 通用 / 其他；另有架构 / 技术 / 规范 / 构建 / 日志 / 配置，供知识型条目使用。分类只影响整理与检索，不影响是否被用上。</p>
-<p>记忆存在本机、跨会话持久化。每次对话都会把最近一批记忆和用户画像附加到上下文里，所以换一条新对话不必重新交代背景。</p>
-<div class="callout callout-tip"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M10 13.4V9M10 6.6v.6"/><path d="M7.6 12.4h4.8"/></svg><span>什么内容值得沉淀</span></div><div class="callout-body"><ul><li>长期成立的偏好与习惯：「回答先给结论」「别自动提交」</li><li>已经拍板的决策，以及当时的理由</li><li>项目独有的背景、术语、目录约定</li><li>明确划出的边界：「这个仓库不引入新依赖」</li></ul>
-<p>一次性的任务、临时状态、寒暄、工具原始输出、纯代码片段都不值得记——自动提炼时也会把它们过滤掉。</p></div></div>
-<h2 id="记忆的修正与清理"><a class="anchor" href="#记忆的修正与清理" aria-hidden="true">#</a>记忆的修正与清理</h2>
-<p>信息会过时，记忆也得能改。三条路径：</p>
-<ol><li><strong>自动覆盖与删除</strong>：如果对话里你明确修正、推翻或废弃了某条已有记忆，提炼时会把那条改写成新内容（覆盖，条目本身留着），或直接清掉（删除）。每次提炼的结果会如实报出"新增 / 覆盖 / 删除 / 跳过重复"各几条。</li><li><strong>手动提炼一次</strong>：点「自动提炼画像」立即跑一次，不必等下一轮对话。</li><li><strong>逐条编辑</strong>：双击记忆内容改文字，点笔形按钮改分类，点 × 删除。删除会同时清掉它在知识库里的那份镜像文档。</li></ol>
-<p>修正过的记忆立刻参与后面的对话，不需要新开一条会话。</p>
-<h2 id="用户画像"><a class="anchor" href="#用户画像" aria-hidden="true">#</a>用户画像</h2>
-<p>画像是记忆里更结构化的一份：它不记具体某句话，而是描述"你是谁、你习惯怎么协作"。</p>
-<div class="table-wrap"><table><thead><tr><th>字段</th><th>填什么</th></tr></thead><tbody><tr><td>角色 / 职业</td><td>全栈开发者、产品经理……</td></tr><tr><td>工作风格</td><td>注重细节、快速原型、迭代式推进……</td></tr><tr><td>技术栈偏好</td><td>Python、React、TypeScript……</td></tr><tr><td>沟通习惯</td><td>简洁直接、多用示例……</td></tr><tr><td>其他</td><td>任何你希望 SLATE 提前知道的信息</td></tr></tbody></table></div>
-<p>画像由对话与记忆自动提炼，通常只需新增或修正个别字段；也可以手填后点「保存画像」，「重置画像」会清空全部字段。它和长期记忆一起自动附加到每次对话里，并明确要求模型不要向你复述这些内容。</p>
-<h2 id="记忆怎么进入对话"><a class="anchor" href="#记忆怎么进入对话" aria-hidden="true">#</a>记忆怎么进入对话</h2>
-<p>记忆与画像不需要你手动"挂载"：每次发送消息时，SLATE 会挑出最近的一批长期记忆与用户画像，附加到这次对话的上下文里，并要求模型拿它们调整风格与内容，而不是当成话题复述。知识库走的是另一条路——只有开启自动检索、并且确实与当前问题相关时，命中的片段才会被注入，见下节。</p>
-<p>三个实际含义：</p>
-<ul><li><strong>记忆不是越多越好</strong>：附加时会做长度截断，啰嗦的条目会挤占上下文预算。值得的留下，过期的清掉。</li><li><strong>记忆是全局的</strong>：它不随项目切换而变，进到哪个项目里都还在（知识库则按归属分家）。</li><li><strong>画像优先于纠正</strong>：填一次"技术栈偏好是 TypeScript"，比在每条对话里纠正模型省事。</li></ul>
-<h2 id="灵光对话里值得留下的洞察"><a class="anchor" href="#灵光对话里值得留下的洞察" aria-hidden="true">#</a>灵光：对话里值得留下的洞察</h2>
-<p>「灵光」是对话结束时的一次自动收割。切换会话时，SLATE 会判断上一场里有没有真正值得跨对话复用的技术洞察——</p>
-<ul><li>重要的技术决策：选了什么方案、为什么、权衡了什么</li><li>非显而易见的问题解法</li><li>可复用的代码或架构模式</li><li>关键配置与环境设置的发现</li><li>值得记下来的工程经验教训</li></ul>
-<p>命中的内容会归档成一条标题形如「灵光 · 某某」的知识文档，参与后续的检索注入；普通问答、闲聊、工具输出、临时调试不会被收走。捕获到内容时会提示收了几条。这条链路可以在 设置 → AI 辅助功能 → 对话洞察捕获 里关掉。</p>
-<h2 id="知识库"><a class="anchor" href="#知识库" aria-hidden="true">#</a>知识库</h2>
-<p>知识库是"按需检索"的那一层：不常驻上下文，只在相关时把片段注入。</p>
-<ul><li><strong>添加</strong>：点「+ 添加知识」填标题与内容，支持 Markdown。</li><li><strong>检索</strong>：勾选「聊天时自动检索知识库」，旁边的「片段」决定每次最多注入几条（1–12，默认 5）；也可以在搜索框里按关键词当场搜。</li><li><strong>来源</strong>：手动添加的笔记、长期记忆的镜像、灵光捕获的洞察、团队工作流产出的成果会陆续汇进来。</li><li><strong>按归属分家</strong>：开着项目时添加知识，会先问你「存进本项目」还是「存为全局」。同名（标题忽略大小写与首尾空白）时项目那条顶掉全局那条，全局其余照旧可见；别的项目的文档不会进入当前视野。完整规则见 <a href="./14-projects.html">项目、工作区与分项目配置</a>。</li><li><strong>删除</strong>：在项目视野里删不掉全局那份（那会带走别的项目共用的文档）。先收起项目，回到只有全局的视野里删。</li></ul>
-<h2 id="文库"><a class="anchor" href="#文库" aria-hidden="true">#</a>文库</h2>
-<p>面板的第四个标签页是文库：一个 Markdown 笔记库。文件夹与笔记树形排列，左侧写源码、右侧实时预览。笔记可以打标签（逗号分隔），也可以用 <code>[[笔记名]]</code> 建立双链；选中一篇时，底部会列出<strong>反向链接</strong>——哪些笔记提到了它。搜索框按标题找，标签栏按标签过滤。适合放那些"想留着，但不适合塞进知识片段"的长资料。</p>
-<h2 id="三类信息的分工"><a class="anchor" href="#三类信息的分工" aria-hidden="true">#</a>三类信息的分工</h2>
-<div class="table-wrap"><table><thead><tr><th></th><th>长期记忆</th><th>用户画像</th><th>知识文档</th></tr></thead><tbody><tr><td>来源</td><td>对话中自动提炼，或手动添加</td><td>由记忆与交互历史提炼，也可手填</td><td>手动添加、记忆镜像、灵光、工作流产物</td></tr><tr><td>存哪</td><td>SLATE 本机，跨会话持久化</td><td>SLATE 本机设置</td><td>SLATE 本机知识库，按全局 / 项目分归属</td></tr><tr><td>什么时候用上</td><td>每次对话附加最近一批</td><td>每次对话附加</td><td>开启自动检索后按相关度注入片段</td></tr><tr><td>怎么改</td><td>面板内增删改</td><td>面板内五栏编辑或重置</td><td>搜索、添加、删除</td></tr></tbody></table></div>
-<h2 id="token-成本与开关"><a class="anchor" href="#token-成本与开关" aria-hidden="true">#</a>Token 成本与开关</h2>
-<p>记忆蒸馏、对话洞察、上下文压缩这些动作本身也要调用模型，所以它们都在「设置 → AI 辅助功能」里挂号：逐项可关，也可以单独指定一个更便宜的模型。与记忆相关的三档是记忆自动蒸馏、记忆手动提取、对话洞察捕获。关掉即一次模型都不发。详见 <a href="./19-settings.html">设置与安全审批</a>。</p>
-<div class="callout callout-note"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M10 9v4.6M10 6.6v.1"/></svg><span>关掉之后</span></div><div class="callout-body"><p>关掉自动蒸馏不影响已经攒下的记忆，也不影响手动添加与编辑，只是不再自动新增、覆盖或删除条目。已经入库的知识与灵光照常参与检索。</p></div></div></article>
-      <nav class="pager" aria-label="翻页"><a class="prev" href="./12-whiteboard.html"><span class="dir">上一篇</span><span class="ttl">白板式逻辑链</span></a><a class="next" href="./14-projects.html"><span class="dir">下一篇</span><span class="ttl">项目、工作区与分项目配置</span></a></nav>
+      <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="./index.html">Docs</a><span class="sep">/</span><span>Collaboration &amp; Reasoning</span><span class="sep">/</span><span class="current">Memory, User Profile and Knowledge Base</span></nav>
+      <article class="prose"><h1 class="doc-title" id="top">Memory, User Profile and Knowledge Base</h1>
+<h2 id="why-memory-exists"><a class="anchor" href="#why-memory-exists" aria-hidden="true">#</a>Why memory exists</h2>
+<p>Having to explain "I use Python and TypeScript", "this repo doesn't want drive-by refactors" and "don't write long preambles" again every time you open a new Chat is pure overhead. Memory &amp; Knowledge turns this kind of information from "repeated every time" into "distilled once, reused long-term": SLATE accumulates the points itself during Chat, and already knows the background before the next conversation starts.</p>
+<p>This page covers four things: where long-term memory comes from and how to change it, what the User Profile is, what Spark captures, and how the knowledge base is divided by ownership.</p>
+<h2 id="where-the-memory-panel-is"><a class="anchor" href="#where-the-memory-panel-is" aria-hidden="true">#</a>Where the memory panel is</h2>
+<p>The "Memory &amp; Profile" button in the top bar opens the same panel, which has four tabs:</p>
+<div class="table-wrap"><table><thead><tr><th>Tab</th><th>What it manages</th></tr></thead><tbody><tr><td>Long-term memory</td><td>The points distilled one by one; add, edit and delete</td></tr><tr><td>User Profile</td><td>Structured information such as role, style and tech stack</td></tr><tr><td>Knowledge Center</td><td>Search, adding and ownership of knowledge documents</td></tr><tr><td>Vault</td><td>Markdown notes, with <code>[[wikilinks]]</code>, tags and backlinks</td></tr></tbody></table></div>
+<p>On mobile, manage long-term memory in the "Memory" tab at the bottom; see <a href="./18-mobile.html">Mobile remote control and LAN access</a>.</p>
+<h2 id="long-term-memory-what-is-kept-and-where-it-comes-from"><a class="anchor" href="#long-term-memory-what-is-kept-and-where-it-comes-from" aria-hidden="true">#</a>Long-term memory: what is kept, and where it comes from</h2>
+<ul><li><strong>Distilled automatically during Chat</strong>: after each reply, SLATE quietly reads the recent conversation and distils information worth keeping long-term into memory entries — your preferences, decisions you have made, project background, terminology conventions, explicit constraints.</li><li><strong>Add manually</strong>: click "+ Add memory", write an entry and pick a category.</li><li><strong>Extract from Chat</strong>: click "Extract from chat" to turn the current conversation into candidate memories.</li><li><strong>Automatic deduplication</strong>: identical or highly similar memories are not added again; the extraction result tells you how many were skipped.</li></ul>
+<p>Categories: preference / decision / project / terminology / fact / general / other; plus architecture / technology / convention / build / log / configuration for knowledge-type entries. Category only affects organisation and retrieval, not whether an entry is used.</p>
+<p>Memory is stored on this machine and persists across sessions. Every conversation attaches the most recent batch of memories and the User Profile to the Context, so a new Chat does not need the background explained again.</p>
+<div class="callout callout-tip"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M10 13.4V9M10 6.6v.6"/><path d="M7.6 12.4h4.8"/></svg><span>What is worth distilling</span></div><div class="callout-body"><ul><li>Long-standing preferences and habits: "give the conclusion first", "don't commit automatically"</li><li>Decisions already made, and the reasoning at the time</li><li>Background, terminology and directory conventions unique to the Project</li><li>Explicit boundaries: "this repo takes no new dependencies"</li></ul>
+<p>One-off tasks, transient state, small talk, raw tool output and bare code snippets are not worth keeping — automatic distillation filters them out too.</p></div></div>
+<h2 id="correcting-and-cleaning-up-memory"><a class="anchor" href="#correcting-and-cleaning-up-memory" aria-hidden="true">#</a>Correcting and cleaning up memory</h2>
+<p>Information goes stale, and memory has to be editable too. Three routes:</p>
+<ol><li><strong>Automatic overwrite and deletion</strong>: if in conversation you explicitly correct, overturn or discard an existing memory, distillation rewrites that entry with the new content (overwrite, the entry itself stays), or clears it outright (delete). Each distillation reports honestly how many were "added / overwritten / deleted / skipped as duplicates".</li><li><strong>Distil manually once</strong>: click "Auto-distil profile" to run it immediately, without waiting for the next conversation.</li><li><strong>Edit entry by entry</strong>: double-click a memory's content to change the text, click the pencil button to change the category, click × to delete. Deleting also clears its mirror document in the knowledge base.</li></ol>
+<p>A corrected memory takes part in later conversations immediately; no new session needed.</p>
+<h2 id="user-profile"><a class="anchor" href="#user-profile" aria-hidden="true">#</a>User Profile</h2>
+<p>The profile is the more structured part of memory: it does not record a particular sentence, but describes who you are and how you prefer to work together.</p>
+<div class="table-wrap"><table><thead><tr><th>Field</th><th>What to fill in</th></tr></thead><tbody><tr><td>Role / occupation</td><td>Full-stack developer, product manager…</td></tr><tr><td>Working style</td><td>Detail-oriented, rapid prototyping, iterative…</td></tr><tr><td>Tech stack preferences</td><td>Python, React, TypeScript…</td></tr><tr><td>Communication habits</td><td>Concise and direct, lots of examples…</td></tr><tr><td>Other</td><td>Anything you want SLATE to know in advance</td></tr></tbody></table></div>
+<p>The profile is distilled automatically from conversations and memory, so usually you only add or correct a field or two; you can also fill it in by hand and click "Save profile" — "Reset profile" clears every field. It is attached to every conversation alongside long-term memory, with an explicit instruction that the model must not repeat this content back to you.</p>
+<h2 id="how-memory-enters-the-conversation"><a class="anchor" href="#how-memory-enters-the-conversation" aria-hidden="true">#</a>How memory enters the conversation</h2>
+<p>Memory and the profile need no manual "mounting": each time you send a message, SLATE picks the most recent batch of long-term memories and the User Profile, attaches them to this conversation's Context, and asks the model to use them to adjust style and content rather than restate them as a topic. The knowledge base works another way — only when automatic retrieval is on and a passage is genuinely relevant to the current question are matching snippets injected, see the next section.</p>
+<p>Three practical implications:</p>
+<ul><li><strong>More memory is not better</strong>: attachment applies length truncation, and wordy entries eat into the Context budget. Keep what earns its place, clear out what has expired.</li><li><strong>Memory is global</strong>: it does not change as you switch Projects — it is there in whichever Project you enter (the knowledge base, by contrast, is divided by ownership).</li><li><strong>The profile beats correcting</strong>: filling in "tech stack preference: TypeScript" once saves you correcting the model in every conversation.</li></ul>
+<h2 id="spark-insights-from-chat-worth-keeping"><a class="anchor" href="#spark-insights-from-chat-worth-keeping" aria-hidden="true">#</a>Spark: insights from Chat worth keeping</h2>
+<p>Spark is an automatic harvest at the end of a conversation. When you switch sessions, SLATE judges whether the previous one contains technical insight genuinely worth reusing across conversations —</p>
+<ul><li>Important technical decisions: which approach was chosen, why, what was traded off</li><li>Non-obvious solutions to problems</li><li>Reusable code or architecture patterns</li><li>Discoveries about key configuration and environment setup</li><li>Engineering lessons worth writing down</li></ul>
+<p>Matching content is filed as a knowledge document titled like "Spark · something" and takes part in later retrieval injection; ordinary Q&amp;A, small talk, tool output and ad-hoc debugging are not collected. When something is captured, it tells you how many entries were collected. This pipeline can be turned off under Settings → AI-assisted features → Conversation insight capture.</p>
+<h2 id="knowledge-base"><a class="anchor" href="#knowledge-base" aria-hidden="true">#</a>Knowledge base</h2>
+<p>The knowledge base is the "retrieve on demand" layer: it does not sit in the Context permanently, and injects snippets only when relevant.</p>
+<ul><li><strong>Add</strong>: click "+ Add knowledge", fill in a title and content; Markdown is supported.</li><li><strong>Retrieval</strong>: tick "Search knowledge base automatically during chat"; "Snippets" next to it sets how many can be injected at most each time (1–12, default 5); you can also search by keyword in the search box right away.</li><li><strong>Sources</strong>: hand-added notes, mirrors of long-term memory, insights captured by Spark and output from team Workflows all flow in over time.</li><li><strong>Divided by ownership</strong>: adding knowledge with a Project open first asks whether to "save into this Project" or "save as global". For the same title (case and leading/trailing whitespace ignored) the Project entry overrides the global one, while the rest of the global set stays visible; documents from other Projects do not enter the current view. Full rules in <a href="./14-projects.html">Projects, workspaces and per-project configuration</a>.</li><li><strong>Delete</strong>: from a Project's view you cannot delete the global copy (that would take away a document other Projects share). Collapse the Project first and delete from the global-only view.</li></ul>
+<h2 id="vault"><a class="anchor" href="#vault" aria-hidden="true">#</a>Vault</h2>
+<p>The panel's fourth tab is the Vault: a Markdown note library. Folders and notes are arranged as a tree, source on the left and live preview on the right. Notes can carry tags (comma-separated), and you can use <code>[[note name]]</code> to create a wikilink; with a note selected, the bottom lists its <strong>backlinks</strong> — which notes mention it. The search box finds by title, the tag bar filters by tag. Good for long material you want to keep but that does not belong in knowledge snippets.</p>
+<h2 id="how-the-three-kinds-of-information-divide-the-work"><a class="anchor" href="#how-the-three-kinds-of-information-divide-the-work" aria-hidden="true">#</a>How the three kinds of information divide the work</h2>
+<div class="table-wrap"><table><thead><tr><th></th><th>Long-term memory</th><th>User Profile</th><th>Knowledge documents</th></tr></thead><tbody><tr><td>Source</td><td>Distilled automatically during Chat, or added manually</td><td>Distilled from memory and interaction history, or filled in by hand</td><td>Added manually, memory mirrors, Spark, Workflow output</td></tr><tr><td>Stored where</td><td>On this machine in SLATE, persisted across sessions</td><td>SLATE's local Settings</td><td>SLATE's local knowledge base, divided into global / Project ownership</td></tr><tr><td>When it is used</td><td>The most recent batch attached to every conversation</td><td>Attached to every conversation</td><td>Snippets injected by relevance once automatic retrieval is on</td></tr><tr><td>How to change it</td><td>Add, edit and delete in the panel</td><td>Edit the five fields in the panel, or reset</td><td>Search, add, delete</td></tr></tbody></table></div>
+<h2 id="token-cost-and-switches"><a class="anchor" href="#token-cost-and-switches" aria-hidden="true">#</a>Token cost and switches</h2>
+<p>Memory distillation, conversation insight and Context compression all call a model themselves, so they are all registered under "Settings → AI-assisted features": each can be turned off, or pointed at a cheaper model of its own. The three memory-related slots are automatic memory distillation, manual memory extraction and conversation insight capture. Turned off means not a single model call is sent. See <a href="./19-settings.html">Settings and security approval</a>.</p>
+<div class="callout callout-note"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M10 9v4.6M10 6.6v.1"/></svg><span>After turning it off</span></div><div class="callout-body"><p>Turning off automatic distillation does not affect memory already accumulated, nor manual adding and editing; it only stops new entries being added, overwritten or deleted automatically. Knowledge and Spark entries already in the library still take part in retrieval as usual.</p></div></div></article>
+      <nav class="pager" aria-label="Pagination"><a class="prev" href="./12-whiteboard.html"><span class="dir">Previous</span><span class="ttl">Whiteboard logic chains</span></a><a class="next" href="./14-projects.html"><span class="dir">Next</span><span class="ttl">Projects, workspaces and per-project configuration</span></a></nav>
       <footer class="site-footer">
-        <span>SLATE（砚）· 本地 AI 协作调度台</span>
+        <span>SLATE · a local AI orchestration desk</span>
         <span>
-          <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a> ·
-          <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a> ·
+          <a href="https://slate-ai.site/" target="_blank" rel="noopener">Home site</a> ·
+          <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">Tutorial</a> ·
           <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
         </span>
-        <span>MIT License · 文档随产品演进</span>
+        <span>MIT License · docs evolve with the product</span>
       </footer>
     </div>
   </main>
 
-  <aside class="toc" data-toc aria-label="本页目录"><div class="toc-title">本页目录</div><ul class="toc-list"><li class="lv2"><a href="#为什么要有记忆">为什么要有记忆</a></li><li class="lv2"><a href="#记忆面板在哪">记忆面板在哪</a></li><li class="lv2"><a href="#长期记忆攒下什么怎么来">长期记忆：攒下什么、怎么来</a></li><li class="lv2"><a href="#记忆的修正与清理">记忆的修正与清理</a></li><li class="lv2"><a href="#用户画像">用户画像</a></li><li class="lv2"><a href="#记忆怎么进入对话">记忆怎么进入对话</a></li><li class="lv2"><a href="#灵光对话里值得留下的洞察">灵光：对话里值得留下的洞察</a></li><li class="lv2"><a href="#知识库">知识库</a></li><li class="lv2"><a href="#文库">文库</a></li><li class="lv2"><a href="#三类信息的分工">三类信息的分工</a></li><li class="lv2"><a href="#token-成本与开关">Token 成本与开关</a></li></ul></aside>
+  <aside class="toc" data-toc aria-label="On this page"><div class="toc-title">On this page</div><ul class="toc-list"><li class="lv2"><a href="#why-memory-exists">Why memory exists</a></li><li class="lv2"><a href="#where-the-memory-panel-is">Where the memory panel is</a></li><li class="lv2"><a href="#long-term-memory-what-is-kept-and-where-it-comes-from">Long-term memory: what is kept, and where it comes from</a></li><li class="lv2"><a href="#correcting-and-cleaning-up-memory">Correcting and cleaning up memory</a></li><li class="lv2"><a href="#user-profile">User Profile</a></li><li class="lv2"><a href="#how-memory-enters-the-conversation">How memory enters the conversation</a></li><li class="lv2"><a href="#spark-insights-from-chat-worth-keeping">Spark: insights from Chat worth keeping</a></li><li class="lv2"><a href="#knowledge-base">Knowledge base</a></li><li class="lv2"><a href="#vault">Vault</a></li><li class="lv2"><a href="#how-the-three-kinds-of-information-divide-the-work">How the three kinds of information divide the work</a></li><li class="lv2"><a href="#token-cost-and-switches">Token cost and switches</a></li></ul></aside>
 </div>
 
 <div class="search-overlay" data-search-overlay hidden>
-  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜索文档">
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search docs">
     <div class="search-field">
       <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="M13.2 13.2 17 17"/></svg>
-      <input type="search" placeholder="搜索文档…" data-search-input autocomplete="off" spellcheck="false">
+      <input type="search" placeholder="Search docs…" data-search-input autocomplete="off" spellcheck="false">
       <kbd>Esc</kbd>
     </div>
     <div class="search-results" data-search-results></div>
-    <div class="search-hint"><span>↑ ↓ 选择</span><span>Enter 打开</span><span>Esc 关闭</span></div>
+    <div class="search-hint"><span>↑ ↓ move</span><span>Enter open</span><span>Esc close</span></div>
   </div>
 </div>
 

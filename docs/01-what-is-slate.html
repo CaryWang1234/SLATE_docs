@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>认识 SLATE · SLATE 文档</title>
-<meta name="description" content="SLATE 是什么、能做什么，以及它适合谁">
-<link rel="icon" href="./assets/icon.png">
+<title>What SLATE is · SLATE Docs</title>
+<meta name="description" content="What SLATE is, what it can do, and who it is for">
+<link rel="icon" type="image/png" href="./assets/icon.png">
+<link rel="alternate" hreflang="zh-CN" href="./zh/01-what-is-slate.html">
 <script>
   try {
     var saved = localStorage.getItem('slate-docs-theme');
@@ -14,35 +15,37 @@
 </script>
 <link rel="stylesheet" href="./assets/docs.css">
 </head>
-<body data-page="01-what-is-slate">
+<body data-page="01-what-is-slate" data-lang="en" data-root="./" data-search-empty="No matching content — try another keyword" data-search-docs="Docs">
 
-<a class="skip-link" href="#main">跳到正文</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="topbar">
   <div class="topbar-inner">
-    <button class="icon-btn menu-btn" type="button" data-menu aria-label="打开导航" aria-expanded="false">
+    <button class="icon-btn menu-btn" type="button" data-menu aria-label="Open navigation" aria-expanded="false">
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
     </button>
 
     <a class="brand" href="./index.html">
       <img class="brand-logo" src="./assets/icon.png" alt="">
       <span class="brand-name">SLATE</span>
-      <span class="brand-sub">文档</span>
+      <span class="brand-sub">Docs</span>
     </a>
 
     <button class="search-trigger" type="button" data-search-open>
       <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="M13.2 13.2 17 17"/></svg>
-      <span>搜索文档</span>
+      <span>Search docs</span>
       <kbd>Ctrl K</kbd>
     </button>
 
     <nav class="topbar-links">
-      <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a>
-      <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a>
+      <a href="https://slate-ai.site/" target="_blank" rel="noopener">Home site</a>
+      <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">Tutorial</a>
       <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
     </nav>
 
-    <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="切换明暗主题">
+    <a class="lang-switch" href="./zh/01-what-is-slate.html" hreflang="zh-CN" title="Read in Chinese">中文</a>
+
+    <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="Toggle theme">
       <svg class="ico-moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16 12.3A6.6 6.6 0 0 1 7.7 4a6.8 6.8 0 1 0 8.3 8.3Z"/></svg>
       <svg class="ico-sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.6"/><path d="M10 2v2.2M10 15.8V18M2 10h2.2M15.8 10H18M4.3 4.3l1.6 1.6M14.1 14.1l1.6 1.6M15.7 4.3l-1.6 1.6M5.9 14.1l-1.6 1.6"/></svg>
     </button>
@@ -52,75 +55,75 @@
 <div class="shell">
   <div class="scrim" data-scrim hidden></div>
 
-  <aside class="sidebar" data-sidebar aria-label="文档导航">
-    <nav class="sidebar-nav"><div class="nav-group"><div class="nav-group-title">开始使用</div><ul class="nav-list"><li><a class="nav-link active" href="./01-what-is-slate.html">认识 SLATE</a></li><li><a class="nav-link" href="./02-install.html">安装与启动</a></li><li><a class="nav-link" href="./03-interface.html">界面总览：页签与三栏工作区</a></li><li><a class="nav-link" href="./04-models.html">模型接入与 API Key</a></li></ul></div><div class="nav-group"><div class="nav-group-title">对话与自动化</div><ul class="nav-list"><li><a class="nav-link" href="./05-chat.html">对话与消息</a></li><li><a class="nav-link" href="./06-autopilot.html">Agent Autopilot 与目标模式</a></li><li><a class="nav-link" href="./07-grind.html">磨墨模式</a></li><li><a class="nav-link" href="./08-tools-skills.html">内置工具与技能</a></li><li><a class="nav-link" href="./09-actions.html">Actions 流程说明书</a></li><li><a class="nav-link" href="./10-experts.html">专家包</a></li></ul></div><div class="nav-group"><div class="nav-group-title">协作与推演</div><ul class="nav-list"><li><a class="nav-link" href="./11-team.html">AI 团队与工作流</a></li><li><a class="nav-link" href="./12-whiteboard.html">白板式逻辑链</a></li><li><a class="nav-link" href="./13-memory-knowledge.html">记忆、画像与知识库</a></li></ul></div><div class="nav-group"><div class="nav-group-title">项目与数据</div><ul class="nav-list"><li><a class="nav-link" href="./14-projects.html">项目、工作区与分项目配置</a></li><li><a class="nav-link" href="./15-prompt-factory.html">提示词工厂</a></li><li><a class="nav-link" href="./16-schedule.html">任务清单与定时任务</a></li><li><a class="nav-link" href="./17-data.html">数据、备份与存储</a></li></ul></div><div class="nav-group"><div class="nav-group-title">移动与安全</div><ul class="nav-list"><li><a class="nav-link" href="./18-mobile.html">移动端遥控与局域网访问</a></li><li><a class="nav-link" href="./19-settings.html">设置与安全审批</a></li></ul></div><div class="nav-group"><div class="nav-group-title">常见问题</div><ul class="nav-list"><li><a class="nav-link" href="./20-faq.html">常见问题</a></li></ul></div></nav>
+  <aside class="sidebar" data-sidebar aria-label="Documentation navigation">
+    <nav class="sidebar-nav"><div class="nav-group"><div class="nav-group-title">Start</div><ul class="nav-list"><li><a class="nav-link active" href="./01-what-is-slate.html">What SLATE is</a></li><li><a class="nav-link" href="./02-install.html">Install &amp; launch</a></li><li><a class="nav-link" href="./03-interface.html">Interface overview: tabs and the three-column workspace</a></li><li><a class="nav-link" href="./04-models.html">Models &amp; API Keys</a></li><li><a class="nav-link" href="./05-chat.html">Chat &amp; messages</a></li></ul></div><div class="nav-group"><div class="nav-group-title">Chat &amp; Automation</div><ul class="nav-list"><li><a class="nav-link" href="./06-autopilot.html">Agent Autopilot and Target Mode</a></li><li><a class="nav-link" href="./07-grind.html">Grind Mode</a></li><li><a class="nav-link" href="./08-tools-skills.html">Built-in tools and skills</a></li><li><a class="nav-link" href="./09-actions.html">Actions process specs</a></li><li><a class="nav-link" href="./10-experts.html">Expert Packs</a></li></ul></div><div class="nav-group"><div class="nav-group-title">Collaboration &amp; Reasoning</div><ul class="nav-list"><li><a class="nav-link" href="./11-team.html">AI Team and Workflows</a></li><li><a class="nav-link" href="./12-whiteboard.html">Whiteboard logic chains</a></li><li><a class="nav-link" href="./13-memory-knowledge.html">Memory, User Profile and Knowledge Base</a></li></ul></div><div class="nav-group"><div class="nav-group-title">Projects &amp; Data</div><ul class="nav-list"><li><a class="nav-link" href="./14-projects.html">Projects, workspaces and per-project configuration</a></li><li><a class="nav-link" href="./15-prompt-factory.html">Prompt Factory</a></li><li><a class="nav-link" href="./16-schedule.html">Task list and Scheduled Tasks</a></li><li><a class="nav-link" href="./17-data.html">Data, backups and storage</a></li></ul></div><div class="nav-group"><div class="nav-group-title">Mobile &amp; Security</div><ul class="nav-list"><li><a class="nav-link" href="./18-mobile.html">Mobile remote control and LAN access</a></li><li><a class="nav-link" href="./19-settings.html">Settings and security approvals</a></li></ul></div><div class="nav-group"><div class="nav-group-title">FAQ</div><ul class="nav-list"><li><a class="nav-link" href="./20-faq.html">FAQ</a></li></ul></div></nav>
   </aside>
 
   <main class="main" id="main">
     <div class="main-inner">
-      <nav class="breadcrumbs" aria-label="面包屑"><a href="./index.html">文档</a><span class="sep">/</span><span>开始使用</span><span class="sep">/</span><span class="current">认识 SLATE</span></nav>
-      <article class="prose"><h1 class="doc-title" id="top">认识 SLATE</h1>
-<p>SLATE（砚）是一台跑在你自己电脑上的 AI 协作调度台。它把粗糙的灵感研磨成结构化方案，再决定是自己动手执行，还是产出一份高质量 Prompt 交给外部的 Coding Agent。</p>
-<p>这页帮你建立整体印象：它解决什么问题、有哪些能力、适合谁用。</p>
-<h2 id="slate-是什么"><a class="anchor" href="#slate-是什么" aria-hidden="true">#</a>SLATE 是什么</h2>
-<p>SLATE 是本地优先的 AI 协作工具，专注于提示词工程、上下文管理与项目灵感整理。它把主流大模型、内置工具、团队辩论、工作流、白板式逻辑链整合在一个界面里。</p>
-<p><strong>它有两副面孔，你可以按场景选：</strong></p>
-<ol><li><strong>自己动手</strong> —— 直接驱动内置工具完成任务：读项目、写文件、跑命令、生成文档与图表。</li><li><strong>产出 Prompt</strong> —— 把上下文、约束、验收标准整合成一份可交付的 Prompt，交给 Claude Code、Codex、Cursor 这类外部 Coding Agent 执行。</li></ol>
-<div class="callout callout-tip"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M10 13.4V9M10 6.6v.6"/><path d="M7.6 12.4h4.8"/></svg><span>一句话理解</span></div><div class="callout-body"><p>灵感负责发散，SLATE 负责把灵感收成一份能落地的方案。</p></div></div>
-<h2 id="从灵感到落地"><a class="anchor" href="#从灵感到落地" aria-hidden="true">#</a>从灵感到落地</h2>
-<p>一个想法从模糊到交付，通常会走成这样：</p>
-<ol><li><strong>磨墨</strong> —— 把一句粗糙想法交给磨墨模式，AI 追问目标、受众、交付物与验收标准，最后收成一份墨稿。</li><li><strong>推演</strong> —— 把墨稿投到白板，卡片加连线把依赖与顺序摆清楚；也可以先让 AI 团队辩一轮。</li><li><strong>执行</strong> —— 打开目标模式，让模型按六阶段自主推进、逐项验证，直到全部了结才收口。</li><li><strong>外送</strong> —— 如果这活更适合外部 Coding Agent，用提示词工厂把上下文与约束整合成一份 Prompt 交出去。</li></ol>
-<p>每一步都可以只用其中一环，不必走完全程。</p>
-<h2 id="它解决什么问题"><a class="anchor" href="#它解决什么问题" aria-hidden="true">#</a>它解决什么问题</h2>
-<p>只给你一个聊天窗口的 AI 工具，意味着下面四件事都得你自己扛。SLATE 把这些活接了过去。</p>
-<div class="table-wrap"><table><thead><tr><th>常见麻烦</th><th>SLATE 的做法</th></tr></thead><tbody><tr><td>上下文管理</td><td>会话历史全文搜索与导出、超阈值自动压缩、长期记忆跨会话召回、知识库按需注入</td></tr><tr><td>提示词工程</td><td>提示词工厂把宪法、上下文、约束整合成一份 Prompt；磨墨模式把模糊想法问成结构化任务书</td></tr><tr><td>项目级操作</td><td>打开项目后可读文件、改代码、跑命令、查 Git 状态，不必复制粘贴来回搬</td></tr><tr><td>Token 消耗</td><td>智能压缩、分级调用、轻量模型负责讨论重型模型负责决策、AI 辅助功能逐项可关</td></tr></tbody></table></div>
-<h2 id="核心能力一览"><a class="anchor" href="#核心能力一览" aria-hidden="true">#</a>核心能力一览</h2>
-<div class="table-wrap"><table><thead><tr><th>能力</th><th>是什么</th><th>一句话价值</th></tr></thead><tbody><tr><td>多模型对话</td><td>国内外主流模型 + 任意 OpenAI 兼容端点 + 本地模型，统一在一个对话界面</td><td>换模型不用换工具</td></tr><tr><td>Agent Autopilot 与目标模式</td><td>识别到查项目、改文件、跑命令、排查 bug 这类请求就自动进入多轮 Agent 循环；目标模式是显式六阶段、更强闭环的版本</td><td>不用反复发「继续」，干完自己收口</td></tr><tr><td>磨墨模式</td><td>一句粗糙想法，AI 三段式追问后研磨成任务书</td><td>想法还糊的时候，先把它磨清楚再动手</td></tr><tr><td>MCP 工具与技能</td><td>内置三十多个工具，另可用 <code>SKILL.md</code> 扩展新能力</td><td>模型能真的操作你的文件与命令行</td></tr><tr><td>Actions 流程说明书</td><td>把「干某件事的必要流程」写成一份说明书，模型按流程推进</td><td>重复流程沉淀一次，之后照着走</td></tr><tr><td>专家包</td><td>人格 + 规则 + 知识 + 技能打包成一个包，可导入导出</td><td>一个领域专家配一次，处处复用</td></tr><tr><td>AI 团队与工作流</td><td>多角色多轮辩论（提案 / 反驳 / 决策），以及 DAG 工作流流水线</td><td>重要决策先辩一轮，再动手</td></tr><tr><td>白板</td><td>卡片加连线整理思路，工具执行自动记成步骤卡</td><td>把推演过程摊在一屏上看</td></tr><tr><td>记忆与知识库</td><td>自动沉淀对话要点、跨会话召回，对话结束还能捕获技术洞察</td><td>不用每次重新交代背景</td></tr><tr><td>提示词工厂</td><td>项目上下文、任务描述、约束一键整合为可交付 Prompt</td><td>交给外部 Coding Agent 的 Prompt 从这儿出</td></tr><tr><td>移动端遥控</td><td>手机 / 平板浏览器打开局域网地址即进入专属移动端界面</td><td>离开电脑也能看进度、下指令</td></tr></tbody></table></div>
-<h2 id="它和外部-coding-agent-的关系"><a class="anchor" href="#它和外部-coding-agent-的关系" aria-hidden="true">#</a>它和外部 Coding Agent 的关系</h2>
-<p>SLATE 不替代 Claude Code、Codex、Cursor，它站在它们前面。</p>
-<ul><li>直接在 SLATE 里干活：适合需要读项目、跑命令、反复验证的任务，全程不用离开这个界面。</li><li>在 SLATE 里备料：适合交给外部 Agent 的大改造。它先把项目上下文、约束条件、验收标准整理成一份结构清晰的 Prompt，你复制走即可。</li></ul>
-<p>两种用法共用同一份记忆、同一份项目宪法与同一批专家包。</p>
-<h2 id="设计原则"><a class="anchor" href="#设计原则" aria-hidden="true">#</a>设计原则</h2>
-<ul><li><strong>纯黑白灰视觉</strong> —— 界面本身不用彩色渐变与装饰性阴影，注意力留给内容；唯一带颜色的是各家模型的品牌 mark，按官方原色画，不跟主题改。</li><li><strong>原生技术栈</strong> —— 零 npm、零构建工具，界面即文件。</li><li><strong>本地优先</strong> —— 所有数据存在本机，不经过任何云端中转。</li><li><strong>Token 节约</strong> —— 智能压缩、分级调用、静默处理，不浪费每一次请求。</li><li><strong>永不卡死</strong> —— 空闲看门狗、零内容自动重试、请求超时、界面兜底多层防线。</li></ul>
-<h2 id="你的数据在哪里"><a class="anchor" href="#你的数据在哪里" aria-hidden="true">#</a>你的数据在哪里</h2>
-<p>对话历史、长期记忆、知识文档、专家包、动作流程、定时任务与各项设置，全部以本机文件形式保存。API Key 保存在本机（本地加密存储），只用于调用你自己配置的模型。</p>
-<p>具体包括：</p>
-<ul><li>每一场对话与每一条消息；</li><li>长期记忆条目与用户画像；</li><li>知识文档与文档归档；</li><li>自建技能、专家包、流程说明书；</li><li>定时 / 事件任务与执行记录；</li><li>模型、审批、主题、排版等各项偏好。</li></ul>
-<p>这些内容的备份、恢复与清理，统一在设置里的数据相关区块处理，也可以一键导出成一个文件换机迁移。</p>
-<div class="callout callout-note"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M10 9v4.6M10 6.6v.1"/></svg><span>关于联网</span></div><div class="callout-body"><p>SLATE 本身是本地应用，但模型推理发生在你选择的模型服务商那里。所以对话时需要能访问你配置的模型端点；内置的联网搜索、网页抓取、更新检查也各需要网络。</p></div></div>
-<h2 id="适合谁"><a class="anchor" href="#适合谁" aria-hidden="true">#</a>适合谁</h2>
-<ul><li>手上有想法、但不知道怎么把它写成可执行方案的人。</li><li>已经在用 Claude Code / Codex / Cursor，想先在本地产出一份高质量 Prompt 的人。</li><li>需要一个长期记住项目背景、跨会话不忘事的 AI 工作台的人。</li><li>在意数据留在本机、不想把项目内容交给云端协作平台的人。</li><li>习惯本地模型（Ollama / LM Studio），想把本地与在线模型放在同一个界面里的人。</li></ul>
-<h2 id="不适合谁"><a class="anchor" href="#不适合谁" aria-hidden="true">#</a>不适合谁</h2>
-<ul><li>想找一个替代 IDE 的人：SLATE 负责协作者与调度，不提供编辑器、调试器、补全等完整 IDE 能力。</li><li>想找云端多人协作平台的人：SLATE 是本机应用，没有账号体系与云端共享空间。</li><li>希望开箱即用、不想自备 API Key 的人：模型额度需要你自己准备。</li><li>想用它做大模型本身的人：SLATE 是调度台，不是训练框架。</li></ul>
-<h2 id="术语速查"><a class="anchor" href="#术语速查" aria-hidden="true">#</a>术语速查</h2>
-<div class="table-wrap"><table><thead><tr><th>术语</th><th>含义</th></tr></thead><tbody><tr><td>Agent Autopilot</td><td>默认的自动推进层：识别到环境操作类请求就自动进入多轮 Agent 循环，干完自动收口</td></tr><tr><td>目标模式</td><td>显式开启的强闭环模式，按「目标 → 计划 → 执行 → 验证 → 汇报 → 追溯」六阶段推进，轮数预算更大</td></tr><tr><td>磨墨</td><td>把粗糙想法研磨成结构化任务书的过程，三段式追问，最多十轮</td></tr><tr><td>Actions</td><td>流程说明书，写明「干某件事的必要流程」，模型按需读取后照流程推进</td></tr><tr><td>Skill</td><td>用一份 <code>SKILL.md</code> 描述的可插拔能力，聊天中提及即注入上下文</td></tr><tr><td>MCP</td><td>模型调用外部工具的协议层，SLATE 内置工具与外部 MCP Server 都由此接入</td></tr><tr><td>专家包</td><td>人格、规则、知识、技能打包成的可分发配置</td></tr><tr><td>砚流</td><td>模型逐 token 写出工具参数时，界面实时演出参数成形过程的预览机制</td></tr></tbody></table></div>
-<h2 id="下一步"><a class="anchor" href="#下一步" aria-hidden="true">#</a>下一步</h2>
-<p>装好它，然后跑起来：<a href="./02-install.html">安装与启动</a>。</p></article>
-      <nav class="pager" aria-label="翻页"><span class="empty"></span><a class="next" href="./02-install.html"><span class="dir">下一篇</span><span class="ttl">安装与启动</span></a></nav>
+      <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="./index.html">Docs</a><span class="sep">/</span><span>Start</span><span class="sep">/</span><span class="current">What SLATE is</span></nav>
+      <article class="prose"><h1 class="doc-title" id="top">What SLATE is</h1>
+<p>SLATE (砚 — the inkstone) is an AI collaboration console that runs on your own computer. It grinds rough inspiration into a structured plan, then decides whether to do the work itself or produce a high-quality Prompt for an external Coding Agent.</p>
+<p>This page gives you the overall picture: what problem it solves, what it can do, and who it suits.</p>
+<h2 id="what-slate-is"><a class="anchor" href="#what-slate-is" aria-hidden="true">#</a>What SLATE is</h2>
+<p>SLATE is a local-first AI collaboration tool focused on prompt engineering, context management and organizing project inspiration. It brings mainstream large models, built-in tools, team debates, workflows and whiteboard-style logic chains into a single interface.</p>
+<p><strong>It has two faces; pick one by scenario:</strong></p>
+<ol><li><strong>Do it yourself</strong> — drive the built-in tools directly to get work done: read the project, write files, run commands, generate documents and diagrams.</li><li><strong>Produce a Prompt</strong> — pack context, constraints and acceptance criteria into a deliverable Prompt and hand it to an external Coding Agent such as Claude Code, Codex or Cursor.</li></ol>
+<div class="callout callout-tip"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M10 13.4V9M10 6.6v.6"/><path d="M7.6 12.4h4.8"/></svg><span>In one line</span></div><div class="callout-body"><p>Inspiration is for diverging; SLATE is for condensing it into a plan you can actually execute.</p></div></div>
+<h2 id="from-inspiration-to-delivery"><a class="anchor" href="#from-inspiration-to-delivery" aria-hidden="true">#</a>From inspiration to delivery</h2>
+<p>An idea usually travels from vague to delivered like this:</p>
+<ol><li><strong>Grind</strong> — hand a rough sentence to Grind Mode; the AI asks about goals, audience, deliverables and acceptance criteria, and finally condenses it into an ink draft.</li><li><strong>Reason it out</strong> — drop the ink draft onto the Whiteboard and use cards plus connections to make dependencies and order explicit; you can also let the AI Team debate a round first.</li><li><strong>Execute</strong> — open Target Mode and let the model push forward autonomously through six stages, verifying item by item, and only close out when everything is settled.</li><li><strong>Hand off</strong> — if the work suits an external Coding Agent better, use Prompt Factory to pack context and constraints into one Prompt and hand it over.</li></ol>
+<p>Each step can be used on its own; you don't have to walk the whole way.</p>
+<h2 id="what-problems-it-solves"><a class="anchor" href="#what-problems-it-solves" aria-hidden="true">#</a>What problems it solves</h2>
+<p>An AI tool that gives you nothing but a chat window means the following four things are all on you. SLATE takes them over.</p>
+<div class="table-wrap"><table><thead><tr><th>Common trouble</th><th>What SLATE does</th></tr></thead><tbody><tr><td>Context management</td><td>Full-text search and export of conversation history, automatic compression past a threshold, long-term memory recalled across sessions, knowledge base injected on demand</td></tr><tr><td>Prompt engineering</td><td>Prompt Factory packs the constitution, context and constraints into one Prompt; Grind Mode questions a vague idea into a structured task brief</td></tr><tr><td>Project-level operations</td><td>With a project open you can read files, change code, run commands and check Git status, without copying and pasting back and forth</td></tr><tr><td>Token consumption</td><td>Smart compression, tiered calls, lightweight models for discussion and heavy models for decisions, every AI-assisted feature individually switchable off</td></tr></tbody></table></div>
+<h2 id="core-capabilities-at-a-glance"><a class="anchor" href="#core-capabilities-at-a-glance" aria-hidden="true">#</a>Core capabilities at a glance</h2>
+<div class="table-wrap"><table><thead><tr><th>Capability</th><th>What it is</th><th>Value in one line</th></tr></thead><tbody><tr><td>Multi-model Chat</td><td>Mainstream models from home and abroad + any OpenAI-compatible endpoint + local models, unified in one Chat interface</td><td>Change models without changing tools</td></tr><tr><td>Agent Autopilot &amp; Target Mode</td><td>Detects requests like inspecting a project, editing files, running commands or debugging and automatically enters a multi-turn Agent loop; Target Mode is the explicit six-stage, tighter closed-loop version</td><td>No repeatedly sending "continue" — it closes out on its own</td></tr><tr><td>Grind Mode</td><td>One rough sentence, three rounds of questions from the AI, ground into a task brief</td><td>When the idea is still fuzzy, grind it clear before you start</td></tr><tr><td>MCP tools &amp; Skills</td><td>Thirty-plus built-in tools, and new capabilities can be added with <code>SKILL.md</code></td><td>The model can actually operate your files and command line</td></tr><tr><td>Actions</td><td>Write "the necessary process for doing something" as a manual, and the model advances along it</td><td>Settle a repeated process once, then follow it every time</td></tr><tr><td>Expert Packs</td><td>Persona + rules + knowledge + skills packed into one package, importable and exportable</td><td>Configure a domain expert once, reuse it everywhere</td></tr><tr><td>AI Team &amp; Workflow</td><td>Multi-role multi-round debate (propose / rebut / decide), plus DAG workflow pipelines</td><td>Debate the important decisions once, then act</td></tr><tr><td>Whiteboard</td><td>Cards plus connections to organise thinking; tool runs are automatically recorded as step cards</td><td>See the whole reasoning process on one screen</td></tr><tr><td>Memory &amp; Knowledge</td><td>Automatically settles conversation points, recalls across sessions, and can capture technical insights when a conversation ends</td><td>No re-explaining the background every time</td></tr><tr><td>Prompt Factory</td><td>One click to integrate project context, task description and constraints into a deliverable Prompt</td><td>The Prompt you hand to an external Coding Agent comes from here</td></tr><tr><td>Mobile remote control</td><td>Open the LAN address in a phone or tablet browser to get the dedicated mobile interface</td><td>Check progress and give instructions away from your computer</td></tr></tbody></table></div>
+<h2 id="how-it-relates-to-external-coding-agents"><a class="anchor" href="#how-it-relates-to-external-coding-agents" aria-hidden="true">#</a>How it relates to external Coding Agents</h2>
+<p>SLATE doesn't replace Claude Code, Codex or Cursor — it stands in front of them.</p>
+<ul><li>Working directly in SLATE: suited to tasks that need reading a project, running commands and repeated verification, without ever leaving this interface.</li><li>Preparing in SLATE: suited to big overhauls you'd hand to an external Agent. It first organises project context, constraints and acceptance criteria into a structurally clear Prompt that you copy out.</li></ul>
+<p>Both ways of working share the same memory, the same project constitution and the same set of Expert Packs.</p>
+<h2 id="design-principles"><a class="anchor" href="#design-principles" aria-hidden="true">#</a>Design principles</h2>
+<ul><li><strong>Pure black, white and grey</strong> — the interface itself uses no colour gradients or decorative shadows, leaving attention for the content; the only colour is each provider's brand mark, drawn in its official colours and not changed with the theme.</li><li><strong>Native stack</strong> — zero npm, zero build tools; the interface is the files.</li><li><strong>Local-first</strong> — all data lives on this machine and passes through no cloud relay.</li><li><strong>Token thrift</strong> — smart compression, tiered calls, silent handling; not a single request is wasted.</li><li><strong>Never hangs</strong> — idle watchdog, automatic retry on empty content, request timeouts, and a UI fallback: several layers of defence.</li></ul>
+<h2 id="where-your-data-is"><a class="anchor" href="#where-your-data-is" aria-hidden="true">#</a>Where your data is</h2>
+<p>Conversation history, long-term memory, knowledge documents, Expert Packs, action flows, Scheduled Tasks and all settings are saved as files on this machine. API Keys are stored locally (encrypted at rest) and are used only to call the models you configured.</p>
+<p>Specifically:</p>
+<ul><li>every conversation and every message;</li><li>long-term memory entries and the User Profile;</li><li>knowledge documents and document archives;</li><li>your own Skills, Expert Packs and process manuals;</li><li>scheduled / event tasks and their run records;</li><li>preferences for models, Approval, themes, typography and so on.</li></ul>
+<p>Backup, restore and cleanup for all of this is handled in the data-related block of Settings, and you can also export everything to a single file to migrate machines.</p>
+<div class="callout callout-note"><div class="callout-head"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/><path d="M10 9v4.6M10 6.6v.1"/></svg><span>About going online</span></div><div class="callout-body"><p>SLATE itself is a local app, but model inference happens at the model provider you choose. So Chat needs access to the model endpoint you configured; the built-in web search, web fetch and update checks each need network access too.</p></div></div>
+<h2 id="who-it-is-for"><a class="anchor" href="#who-it-is-for" aria-hidden="true">#</a>Who it is for</h2>
+<ul><li>People who have an idea but don't know how to turn it into an executable plan.</li><li>People already using Claude Code / Codex / Cursor who want to produce a high-quality Prompt locally first.</li><li>People who need an AI workbench that remembers project background long-term and doesn't forget things across sessions.</li><li>People who care about data staying on their machine and don't want project content handed to a cloud collaboration platform.</li><li>People used to local models (Ollama / LM Studio) who want local and online models in one interface.</li></ul>
+<h2 id="who-it-is-not-for"><a class="anchor" href="#who-it-is-not-for" aria-hidden="true">#</a>Who it is not for</h2>
+<ul><li>People looking for an IDE replacement: SLATE is the collaborator and the dispatcher; it doesn't provide a full IDE with editor, debugger and completion.</li><li>People looking for a cloud multi-person collaboration platform: SLATE is a local app, with no account system and no shared cloud space.</li><li>People who expect it to work out of the box without bringing their own API Key: model quota is yours to arrange.</li><li>People who want to train large models with it: SLATE is a console, not a training framework.</li></ul>
+<h2 id="glossary"><a class="anchor" href="#glossary" aria-hidden="true">#</a>Glossary</h2>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody><tr><td>Agent Autopilot</td><td>The default auto-advance layer: on detecting an environment-operation request it enters a multi-turn Agent loop and closes out on its own when done</td></tr><tr><td>Target Mode</td><td>A strongly closed mode you turn on explicitly, advancing through six stages — "goal → plan → execute → verify → report → trace" — with a larger turn budget</td></tr><tr><td>Grind (磨墨)</td><td>The process of grinding a rough idea into a structured task brief: three rounds of questioning, up to ten turns</td></tr><tr><td>Actions</td><td>Process manuals that state "the necessary process for doing something"; the model reads them as needed and advances along them</td></tr><tr><td>Skill</td><td>A pluggable capability described by one <code>SKILL.md</code>, injected into context as soon as it is mentioned in Chat</td></tr><tr><td>MCP</td><td>The protocol layer through which the model calls external tools; both SLATE's built-in tools and external MCP Servers come in through it</td></tr><tr><td>Expert Pack</td><td>A distributable configuration packing persona, rules, knowledge and skills</td></tr><tr><td>Ink Flow (砚流)</td><td>When the model writes tool parameters token by token, the preview mechanism that renders the shaping of those parameters live in the interface</td></tr></tbody></table></div>
+<h2 id="next-steps"><a class="anchor" href="#next-steps" aria-hidden="true">#</a>Next steps</h2>
+<p>Install it, then run it: <a href="./02-install.html">Install &amp; launch</a>.</p></article>
+      <nav class="pager" aria-label="Pagination"><span class="empty"></span><a class="next" href="./02-install.html"><span class="dir">Next</span><span class="ttl">Install &amp; launch</span></a></nav>
       <footer class="site-footer">
-        <span>SLATE（砚）· 本地 AI 协作调度台</span>
+        <span>SLATE · a local AI orchestration desk</span>
         <span>
-          <a href="https://slate-ai.site/" target="_blank" rel="noopener">官网</a> ·
-          <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">使用教程</a> ·
+          <a href="https://slate-ai.site/" target="_blank" rel="noopener">Home site</a> ·
+          <a href="https://slate-ai.site/guide.html" target="_blank" rel="noopener">Tutorial</a> ·
           <a href="https://github.com/CaryWang1234/SLATE" target="_blank" rel="noopener">GitHub</a>
         </span>
-        <span>MIT License · 文档随产品演进</span>
+        <span>MIT License · docs evolve with the product</span>
       </footer>
     </div>
   </main>
 
-  <aside class="toc" data-toc aria-label="本页目录"><div class="toc-title">本页目录</div><ul class="toc-list"><li class="lv2"><a href="#slate-是什么">SLATE 是什么</a></li><li class="lv2"><a href="#从灵感到落地">从灵感到落地</a></li><li class="lv2"><a href="#它解决什么问题">它解决什么问题</a></li><li class="lv2"><a href="#核心能力一览">核心能力一览</a></li><li class="lv2"><a href="#它和外部-coding-agent-的关系">它和外部 Coding Agent 的关系</a></li><li class="lv2"><a href="#设计原则">设计原则</a></li><li class="lv2"><a href="#你的数据在哪里">你的数据在哪里</a></li><li class="lv2"><a href="#适合谁">适合谁</a></li><li class="lv2"><a href="#不适合谁">不适合谁</a></li><li class="lv2"><a href="#术语速查">术语速查</a></li><li class="lv2"><a href="#下一步">下一步</a></li></ul></aside>
+  <aside class="toc" data-toc aria-label="On this page"><div class="toc-title">On this page</div><ul class="toc-list"><li class="lv2"><a href="#what-slate-is">What SLATE is</a></li><li class="lv2"><a href="#from-inspiration-to-delivery">From inspiration to delivery</a></li><li class="lv2"><a href="#what-problems-it-solves">What problems it solves</a></li><li class="lv2"><a href="#core-capabilities-at-a-glance">Core capabilities at a glance</a></li><li class="lv2"><a href="#how-it-relates-to-external-coding-agents">How it relates to external Coding Agents</a></li><li class="lv2"><a href="#design-principles">Design principles</a></li><li class="lv2"><a href="#where-your-data-is">Where your data is</a></li><li class="lv2"><a href="#who-it-is-for">Who it is for</a></li><li class="lv2"><a href="#who-it-is-not-for">Who it is not for</a></li><li class="lv2"><a href="#glossary">Glossary</a></li><li class="lv2"><a href="#next-steps">Next steps</a></li></ul></aside>
 </div>
 
 <div class="search-overlay" data-search-overlay hidden>
-  <div class="search-panel" role="dialog" aria-modal="true" aria-label="搜索文档">
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search docs">
     <div class="search-field">
       <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="M13.2 13.2 17 17"/></svg>
-      <input type="search" placeholder="搜索文档…" data-search-input autocomplete="off" spellcheck="false">
+      <input type="search" placeholder="Search docs…" data-search-input autocomplete="off" spellcheck="false">
       <kbd>Esc</kbd>
     </div>
     <div class="search-results" data-search-results></div>
-    <div class="search-hint"><span>↑ ↓ 选择</span><span>Enter 打开</span><span>Esc 关闭</span></div>
+    <div class="search-hint"><span>↑ ↓ move</span><span>Enter open</span><span>Esc close</span></div>
   </div>
 </div>
 
